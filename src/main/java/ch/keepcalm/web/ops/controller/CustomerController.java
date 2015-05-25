@@ -1,6 +1,7 @@
 package ch.keepcalm.web.ops.controller;
 
 import ch.keepcalm.web.ops.domain.Customer;
+import ch.keepcalm.web.ops.repository.CustomerRepository;
 import ch.keepcalm.web.ops.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    CustomerRepository repository;
+
 
     @RequestMapping("/customer")
     public ModelAndView customer() {
@@ -32,5 +36,50 @@ public class CustomerController {
             System.out.println("Content: " + customer.getFirstName());
        });*/
         return new ModelAndView("customer/customerlist", "customers", customerService.findAll());
+    }
+
+
+    @RequestMapping("/loadData")
+    public ModelAndView loadData() throws Exception {
+
+        // save a couple of customers
+        repository.save(new Customer("Jack", "Bauer"));
+        repository.save(new Customer("Chloe", "O'Brian"));
+        repository.save(new Customer("Kim", "Bauer"));
+        repository.save(new Customer("David", "Palmer"));
+        repository.save(new Customer("Michelle", "Dessler"));
+
+
+        // fetch all customers
+        System.out.println("Customers found with findAll():");
+        System.out.println("-------------------------------");
+        for (Customer customer : repository.findAll()) {
+            System.out.println(customer);
+        }
+        System.out.println();
+
+        // fetch an individual customer by ID
+        Customer customer = repository.findOne(1L);
+        System.out.println("Customer found with findOne(1L):");
+        System.out.println("--------------------------------");
+        System.out.println(customer);
+        System.out.println();
+
+        // fetch customers by last name
+        System.out.println("Customer found with findByLastName('Bauer'):");
+        System.out.println("--------------------------------------------");
+        for (Customer bauer : repository.findByName("Bauer")) {
+            System.out.println(bauer);
+        }
+
+        return new ModelAndView("customer/customerlist", "customers", customerService.findAll());
+
+    }
+
+    @RequestMapping("/clearData")
+    public ModelAndView clearData() throws Exception {
+        repository.deleteAll();
+        return new ModelAndView("customer/customerlist", "customers", customerService.findAll());
+
     }
 }

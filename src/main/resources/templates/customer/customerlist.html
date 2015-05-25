@@ -8,6 +8,9 @@
 <body>
 	<h1 layout:fragment="header">Customer : View all</h1>
 	<div layout:fragment="content" class="container">
+		<p><a href="/loadData">Load test data</a> </p>
+		<p><a href="/clearData">Clear test data</a> </p>
+
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
@@ -18,7 +21,7 @@
 			</thead>
 			<tbody>
 				<tr th:if="${customers.empty}">
-					<td colspan="3">No messages</td>
+					<td colspan="3">No Customers</td>
 				</tr>
 				<tr th:each="customer : ${customers}">
 					<td th:text="${customer.id}">ID</td>

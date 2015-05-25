@@ -1,22 +1,14 @@
 package ch.keepcalm.web.ops;
 
-import ch.keepcalm.web.ops.domain.Customer;
-import ch.keepcalm.web.ops.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OpsApplication implements CommandLineRunner {
+public class OpsApplication  {
+/* implements CommandLineRunner
 
     @Autowired
-    CustomerRepository repository;
-
-    public static void main(String[] args) {
-        SpringApplication.run(OpsApplication.class, args);
-    }
-
+   CustomerRepository repository;
     @Override
     public void run(String... strings) throws Exception {
 
@@ -50,4 +42,11 @@ public class OpsApplication implements CommandLineRunner {
             System.out.println(bauer);
         }
     }
+*/
+
+    public static void main(String[] args) {
+        SpringApplication.run(OpsApplication.class, args);
+    }
+
+
 }

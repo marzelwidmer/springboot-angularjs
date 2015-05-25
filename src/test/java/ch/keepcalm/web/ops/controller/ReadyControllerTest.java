@@ -18,14 +18,14 @@ import static org.junit.Assert.assertEquals;
 @SpringApplicationConfiguration(classes = OpsApplication.class)
 @IntegrationTest
 @WebAppConfiguration
-public class HelloControllerTest  {
+public class ReadyControllerTest {
 
 
     @Test
-    public void testHello() throws Exception {
+    public void testReady() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
-        assertEquals("Hello", restTemplate.getForObject(
-                "http://127.0.0.1:8080", String.class));
+        assertEquals("Ready", restTemplate.getForObject(
+                "http://127.0.0.1:8080/ready", String.class));
 
     }
 }

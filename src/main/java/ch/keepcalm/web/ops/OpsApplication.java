@@ -19,12 +19,14 @@ public class OpsApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
+
         // save a couple of customers
         repository.save(new Customer("Jack", "Bauer"));
         repository.save(new Customer("Chloe", "O'Brian"));
         repository.save(new Customer("Kim", "Bauer"));
         repository.save(new Customer("David", "Palmer"));
         repository.save(new Customer("Michelle", "Dessler"));
+
 
         // fetch all customers
         System.out.println("Customers found with findAll():");
@@ -44,7 +46,7 @@ public class OpsApplication implements CommandLineRunner {
         // fetch customers by last name
         System.out.println("Customer found with findByLastName('Bauer'):");
         System.out.println("--------------------------------------------");
-        for (Customer bauer : repository.findByLastName("Bauer")) {
+        for (Customer bauer : repository.findByName("Bauer")) {
             System.out.println(bauer);
         }
     }

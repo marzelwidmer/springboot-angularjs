@@ -34,8 +34,10 @@ public class CustomerRestController {
     public void delete(@PathVariable long id) {
         Customer customer = new Customer();
         customer.setId(id);
-        customerService.delete(customer);
+        System.out.println("Delete customer with ID " + customer.getId());
+        System.out.println("-------------------------------");
 
+        customerService.delete(customer);
     }
 
 }

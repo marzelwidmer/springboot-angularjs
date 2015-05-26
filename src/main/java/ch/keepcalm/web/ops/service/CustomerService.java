@@ -14,9 +14,11 @@ import java.util.List;
 @Service
 @Transactional
 public class CustomerService {
+
     @Autowired
     CustomerRepository customerRepository;
 
+    @Transactional
     public List<Customer> findAll(){
        return customerRepository.findAll();
     }
@@ -24,9 +26,11 @@ public class CustomerService {
 
     @Transactional
     public void add(String name) {
-        final Customer e = new Customer();
-        e.setName(name);
-        this.customerRepository.saveAndFlush(e);
+        final Customer customer = new Customer();
+        customer.setName(name);
+        this.customerRepository.saveAndFlush(customer);
+
+
     }
 
 

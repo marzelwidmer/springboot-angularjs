@@ -5,7 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class OpsApplication  {
-/* implements CommandLineRunner
+    public static void main(String[] args) {
+        SpringApplication.run(OpsApplication.class, args);
+    }
+}
+
+
+/*
+public class OpsApplication implements CommandLineRunner {
 
     @Autowired
    CustomerRepository repository;
@@ -43,10 +50,3 @@ public class OpsApplication  {
         }
     }
 */
-
-    public static void main(String[] args) {
-        SpringApplication.run(OpsApplication.class, args);
-    }
-
-
-}

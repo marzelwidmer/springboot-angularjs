@@ -19,6 +19,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    // Test daten
     @Autowired
     CustomerRepository repository;
 

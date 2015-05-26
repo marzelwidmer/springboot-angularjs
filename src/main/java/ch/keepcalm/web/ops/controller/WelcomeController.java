@@ -1,13 +1,13 @@
 package ch.keepcalm.web.ops.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by marcelwidmer on 24/05/15.
+ * Created by marcelwidmer on 26/05/15.
  */
-@RestController
+@Controller
 public class WelcomeController {
 
 
@@ -17,11 +17,5 @@ public class WelcomeController {
         return new ModelAndView("welcome");
 
     }
-
-    @RequestMapping("/ready")
-    public String ready() {
-        return "Ready";
-    }
-
 
 }

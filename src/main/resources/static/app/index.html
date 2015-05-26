@@ -7,7 +7,7 @@
 		  href="../../css/bootstrap.min.css"/>
 </head>
 <body>
-<div class="container">
+<div class="container" ng-app="myApp" ng-controller="EmpController">
 	<div class="navbar">
 		<div class="navbar-inner">
 			<a class="brand"
@@ -17,27 +17,11 @@
 
 		</div>
 	</div>
-	<h1 layout:fragment="header">Layout</h1>
+	<h1 layout:fragment="header">Customer : View all {{getTotalCustomers()}} </h1>
+    <p><a href="/loadDataAngular">Load test data</a> | <a href="/clearDataAngular">Clear test data</a> | <a href="/api/customer">Customer API</a></p>
 	<div layout:fragment="content">
-
-
-		<p><a href="/loadData">Load test data</a> </p>
-		<p><a href="/clearData">Clear test data</a> </p>
-
-		<div class="container" ng-app="myApp" ng-controller="EmpController">
-			<hr class="soften">
+		<div class="container" >
 			<div class="panel panel-default">
-				<div class="col-md-12">
-					Write some text in textbox and Angular will give you an answer : <input type="text" ng-model="sometext">
-					<h1>Hello {{sometext}}</h1>
-				</div>
-				<hr class="soften">
-
-				<div class="panel-heading">
-					<h3 class="panel-title">Employees</h3>
-				</div>
-				<div class="panel-body">This is a list of all {{getTotalCustomers()}} registert customers</div>
-
 				<table class="table table-striped table-condensed">
 					<thead>
 					<tr>

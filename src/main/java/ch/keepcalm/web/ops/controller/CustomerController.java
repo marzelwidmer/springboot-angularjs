@@ -42,7 +42,31 @@ public class CustomerController {
 
     @RequestMapping("/loadData")
     public ModelAndView loadData() throws Exception {
+        insertTestData();
+        return new ModelAndView("customer/customerlist", "customers", customerService.findAll());
 
+    }
+
+    @RequestMapping("/clearData")
+    public ModelAndView clearData() throws Exception {
+        repository.deleteAll();
+        return new ModelAndView("customer/customerlist", "customers", customerService.findAll());
+    }
+
+    @RequestMapping("/loadDataAngular")
+    public String loadDataAngularRedirect() throws Exception {
+        insertTestData();
+        return "redirect:app/index.html";
+    }
+
+    @RequestMapping("/clearDataAngular")
+    public String clearDataAngularRedirect() throws Exception {
+        repository.deleteAll();
+        return "redirect:app/index.html";
+    }
+
+
+    private void insertTestData() {
         // save a couple of customers
         repository.save(new Customer("Jack", "Bauer"));
         repository.save(new Customer("Chloe", "O'Brian"));
@@ -72,15 +96,7 @@ public class CustomerController {
         for (Customer bauer : repository.findByName("Bauer")) {
             System.out.println(bauer);
         }
-
-        return new ModelAndView("customer/customerlist", "customers", customerService.findAll());
-
     }
 
-    @RequestMapping("/clearData")
-    public ModelAndView clearData() throws Exception {
-        repository.deleteAll();
-        return new ModelAndView("customer/customerlist", "customers", customerService.findAll());
 
-    }
 }

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReadyController {
 
 
-    @RequestMapping("/ready")
+    @RequestMapping("/ready/ready.jsp")
     public String ready() {
-        return "Ready";
+        return "CCBUP";
     }
 }

@@ -1,11 +1,18 @@
 package ch.keepcalm.web.ops.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Customer {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Customer implements Serializable {
+
+
+    private static final long serialVersionUID = 5873356508976710835L;
 
     private String name;
     private String firstname;

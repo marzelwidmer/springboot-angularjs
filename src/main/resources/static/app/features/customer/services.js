@@ -6,6 +6,8 @@ angular.module ( 'myApp.services', [] ).factory ( 'ServiceClient', function ( $r
         update : {
             method : 'PUT'
         }
-
     } );
+
+
+
 });

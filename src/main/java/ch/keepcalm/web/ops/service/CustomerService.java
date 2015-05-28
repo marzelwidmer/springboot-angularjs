@@ -19,8 +19,8 @@ public class CustomerService {
     CustomerRepository customerRepository;
 
     @Transactional
-    public List<Customer> findAll(){
-       return customerRepository.findAll();
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
     }
 
 
@@ -29,14 +29,15 @@ public class CustomerService {
         final Customer customer = new Customer();
         customer.setName(name);
         this.customerRepository.saveAndFlush(customer);
-
-
     }
-
 
     @Transactional
     public void delete(Customer customer) {
         customerRepository.delete(customer);
     }
 
+    @Transactional
+    public Customer findOne(Long id) {
+        return customerRepository.getOne(id);
+    }
 }

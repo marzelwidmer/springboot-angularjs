@@ -3,41 +3,57 @@ package ch.keepcalm.web.ops.controller;
 import ch.keepcalm.web.ops.domain.Customer;
 import ch.keepcalm.web.ops.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 /**
  * Created by marcelwidmer on 25/05/15.
  */
 @RestController
-@RequestMapping("/api")
-public class CustomerRestController {
+@RequestMapping("/hal/customer/")
+public class CustomerHalController {
 
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping("/customer")
-    public List<Customer> customer() {
-        return customerService.findAll();
-    }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Customer customer(@PathVariable Long id) {
         Customer customer = customerService.findOne(id);
         return customer;
     }
 
 
-    @RequestMapping("/add/{name}")
+    @RequestMapping("/")
+    public List<ShortContact> customer() {
+        List<Customer> customers = customerService.findAll();
+        List<ShortContact> resources = new ArrayList<ShortContact>(customers.size());
+        for(Customer customer : customers) {
+            ShortContact resource = new ShortContact();
+            resource.setFirstname(customer.getFirstname());
+            resource.setLastname(customer.getName());
+            Link detail = linkTo(CustomerRestController.class).slash(customer.getId()).withSelfRel();
+            resource.add(detail);
+            resources.add(resource);
+        }
+        return resources;
+    }
+
+
+    @RequestMapping("add/{name}")
     public void addCustomer(@PathVariable String name) {
         this.customerService.add(name);
     }
 
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
         Customer customer = new Customer();

@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = OpsApplication.class)
-@WebIntegrationTest("server.port:0")
+@WebIntegrationTest("server.port:7777")
 public class ReadyControllerTest {
 
 
@@ -23,7 +23,7 @@ public class ReadyControllerTest {
     public void testReady() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         assertEquals("CCBUP", restTemplate.getForObject(
-                "http://127.0.0.1:8080/ready/ready.jsp", String.class));
+                "http://127.0.0.1:7777/ready/ready.jsp", String.class));
 
     }
 }

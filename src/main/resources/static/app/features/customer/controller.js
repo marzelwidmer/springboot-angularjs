@@ -23,13 +23,26 @@ angular.module('myApp.controllers', [])
 
         // also works with array results from $resource(...).query()
         var items = $resource(url).query(null, function () {
-            console.log(items);
-            angular.forEach(items, function (item) {
-                console.log("Get some resources " + item.firstname + " " + item.lastname + " ");
+            console.log(items.length);
 
+            // TODO create a Customer class with a list of links
+            $scope.customersHal = [];
+
+            angular.forEach(items, function (item) {
+                $scope.customersHal.push(item);
+
+                console.log("Get some resources " + item.firstname + " " + item.lastname + " ");
                 console.log("Here's a related $resource object: ", item.links);
                 angular.forEach(item.links, function (link) {
                     console.log("link ", link.href);
+                    console.log("------");
+                });
+
+
+
+                // test output
+                angular.forEach($scope.customersHal, function (customer) {
+                    console.log("customer ", customer.firstname + "  " + customer.lastname);
                     console.log("------");
                 });
             });

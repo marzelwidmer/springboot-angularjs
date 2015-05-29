@@ -27,7 +27,7 @@ public class CustomerService {
     @Transactional
     public void add(String name) {
         final Customer customer = new Customer();
-        customer.setName(name);
+        customer.setLastname(name);
         this.customerRepository.saveAndFlush(customer);
     }
 

@@ -14,7 +14,7 @@ public class Customer implements Serializable {
 
     private static final long serialVersionUID = 5873356508976710835L;
 
-    private String name;
+    private String lastname;
     private String firstname;
     @Id
     @GeneratedValue
@@ -23,8 +23,8 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(String name, String firstname) {
-        this.name = name;
+    public Customer(String lastname, String firstname) {
+        this.lastname = lastname;
         this.firstname = firstname;
     }
 
@@ -34,7 +34,7 @@ public class Customer implements Serializable {
         int result = 1;
         result = prime * result
                 + ((firstname == null) ? 0 : firstname.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
         return result;
     }
 
@@ -52,10 +52,10 @@ public class Customer implements Serializable {
                 return false;
         } else if (!firstname.equals(other.firstname))
             return false;
-        if (name == null) {
-            if (other.name != null)
+        if (lastname == null) {
+            if (other.lastname != null)
                 return false;
-        } else if (!name.equals(other.name))
+        } else if (!lastname.equals(other.lastname))
             return false;
         return true;
     }
@@ -68,12 +68,12 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getFirstname() {

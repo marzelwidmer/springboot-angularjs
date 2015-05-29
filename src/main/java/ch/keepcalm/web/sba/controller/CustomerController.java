@@ -29,7 +29,7 @@ public class CustomerController {
         List<Customer> all = customerService.findAll();
 
         for (Customer customer : all) {
-            System.out.println("Customer firstName: " + customer.getName());
+            System.out.println("Customer firstName: " + customer.getLastname());
         }
         //lambda
         //JAVA 8: FROM A FOR-LOOP TO FOREACH STATEMENT
@@ -93,7 +93,7 @@ public class CustomerController {
         // fetch customers by last name
         System.out.println("Customer found with findByLastName('Bauer'):");
         System.out.println("--------------------------------------------");
-        for (Customer bauer : repository.findByName("Bauer")) {
+        for (Customer bauer : repository.findByLastname("Bauer")) {
             System.out.println(bauer);
         }
     }

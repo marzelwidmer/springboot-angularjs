@@ -38,7 +38,7 @@ public class CustomerHalController {
         for(Customer customer : customers) {
             ShortContact resource = new ShortContact();
             resource.setFirstname(customer.getFirstname());
-            resource.setLastname(customer.getName());
+            resource.setLastname(customer.getLastname());
             Link detail = linkTo(CustomerHalController.class).slash(customer.getId()).withSelfRel();
             resource.add(detail);
             resources.add(resource);

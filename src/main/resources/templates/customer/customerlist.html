@@ -14,8 +14,8 @@
 			<thead>
 				<tr>
 					<td>ID</td>
-					<td>Name</td>
-					<td>Firstname</td>
+					<td>FirstName</td>
+					<td>LastName</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,8 +24,8 @@
 				</tr>
 				<tr th:each="customer : ${customers}">
 					<td th:text="${customer.id}">ID</td>
-					<td th:text="${customer.name}">Name</td>
-					<td th:text="${customer.firstname}">Firstname</td>
+					<td th:text="${customer.firstname}">FirstName</td>
+					<td th:text="${customer.lastname}">Lastname</td>
 				</tr>
 			</tbody>
 		</table>

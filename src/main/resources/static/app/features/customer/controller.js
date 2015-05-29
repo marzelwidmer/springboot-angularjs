@@ -1,10 +1,7 @@
 
 angular.module('myApp.controllers', [])
     .controller('EmpController', function ($log, $scope, $http, ServiceClient) {
-
         'use strict';
-
-
 
         // GET ALL
         $scope.customers = ServiceClient.query(); //fetch all

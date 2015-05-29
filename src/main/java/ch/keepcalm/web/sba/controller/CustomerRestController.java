@@ -31,13 +31,13 @@ public class CustomerRestController {
     }
 
 
-    @RequestMapping("/add/{name}")
+    @RequestMapping("/customer/add/{name}")
     public void addCustomer(@PathVariable String name) {
         this.customerService.add(name);
     }
 
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
         Customer customer = new Customer();
@@ -59,7 +59,6 @@ public class CustomerRestController {
         public void setLastname(String lastname) {
             this.lastname = lastname;
         }
-
 
 
         public String getFirstname() {

@@ -1,7 +1,7 @@
-package ch.keepcalm.web.ops.controller;
+package ch.keepcalm.web.sba.controller;
 
-import ch.keepcalm.web.ops.domain.Customer;
-import ch.keepcalm.web.ops.service.CustomerService;
+import ch.keepcalm.web.sba.domain.Customer;
+import ch.keepcalm.web.sba.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.http.HttpStatus;

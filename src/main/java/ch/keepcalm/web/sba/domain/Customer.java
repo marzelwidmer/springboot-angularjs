@@ -1,4 +1,4 @@
-package ch.keepcalm.web.ops.domain;
+package ch.keepcalm.web.sba.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,4 +1,4 @@
-package ch.keepcalm.web.ops.controller;
+package ch.keepcalm.web.sba.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

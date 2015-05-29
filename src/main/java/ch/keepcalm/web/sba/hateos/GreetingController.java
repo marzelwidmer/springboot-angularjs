@@ -1,4 +1,4 @@
-package ch.keepcalm.web.ops.hateos;
+package ch.keepcalm.web.sba.hateos;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;

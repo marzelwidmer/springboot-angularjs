@@ -1,8 +1,8 @@
-package ch.keepcalm.web.ops.controller;
+package ch.keepcalm.web.sba.controller;
 
-import ch.keepcalm.web.ops.domain.Customer;
-import ch.keepcalm.web.ops.repository.CustomerRepository;
-import ch.keepcalm.web.ops.service.CustomerService;
+import ch.keepcalm.web.sba.domain.Customer;
+import ch.keepcalm.web.sba.repository.CustomerRepository;
+import ch.keepcalm.web.sba.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

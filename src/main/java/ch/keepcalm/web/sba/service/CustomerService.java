@@ -1,7 +1,7 @@
-package ch.keepcalm.web.ops.service;
+package ch.keepcalm.web.sba.service;
 
-import ch.keepcalm.web.ops.domain.Customer;
-import ch.keepcalm.web.ops.repository.CustomerRepository;
+import ch.keepcalm.web.sba.domain.Customer;
+import ch.keepcalm.web.sba.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

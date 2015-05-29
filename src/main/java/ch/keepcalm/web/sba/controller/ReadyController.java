@@ -1,4 +1,4 @@
-package ch.keepcalm.web.ops.controller;
+package ch.keepcalm.web.sba.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +12,6 @@ public class ReadyController {
 
     @RequestMapping("/ready/ready.jsp")
     public String ready() {
-        return "CCBUP";
+        return "SBAUP";
     }
 }

@@ -1,4 +1,4 @@
-package ch.keepcalm.web.ops;
+package ch.keepcalm.web.sba;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -9,9 +9,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = OpsApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class OpsApplicationTests {
+public class ApplicationTests {
 
 	@Test
 	public void contextLoads() {

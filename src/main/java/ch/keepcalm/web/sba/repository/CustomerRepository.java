@@ -1,6 +1,6 @@
-package ch.keepcalm.web.ops.repository;
+package ch.keepcalm.web.sba.repository;
 
-import ch.keepcalm.web.ops.domain.Customer;
+import ch.keepcalm.web.sba.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

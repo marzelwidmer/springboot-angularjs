@@ -1,12 +1,12 @@
-package ch.keepcalm.web.ops;
+package ch.keepcalm.web.sba;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OpsApplication  {
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(OpsApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
 

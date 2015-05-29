@@ -1,4 +1,4 @@
-package ch.keepcalm.web.ops.filter;
+package ch.keepcalm.web.sba.filter;
 
 import org.springframework.stereotype.Component;
 

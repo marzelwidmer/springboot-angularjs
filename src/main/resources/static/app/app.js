@@ -1,10 +1,11 @@
+'use strict';
 
 angular.module ( 'myApp', [ 'ui.router', 'ngResource', 'myApp.controllers', 'myApp.services' ] );
 
 
 
-
-angular.module('myHalApp', ['ui.router', 'ngResource', 'myApp.controllers', 'myApp.services', 'angular-hal'])
+/*
+angular.module('myApp', ['ui.router', 'ngResource', 'myApp.controllers', 'myApp.services', 'angular-hal'])
     .run(function ($rootScope, halClient) {
         $rootScope.apiRoot = halClient.$get('/hal/customer/');
     })
@@ -71,3 +72,4 @@ angular.module('myHalApp', ['ui.router', 'ngResource', 'myApp.controllers', 'myA
             });
         }
     })
+    */

@@ -20,11 +20,6 @@ angular.module('myApp.controllers', [])
         'use strict';
         console.log("CustomerController try to get a HAL RESOURCE");
         var url = "http://localhost:8080/hal/customer/ ";
-        /*var item = $resource(url).get(null, function () {
-            console.log("Get some resources");
-            console.log("Here's a related $resource object: ", item.resource("some-related-endpoint"));
-        });*/
-
 
         // also works with array results from $resource(...).query()
         var items = $resource(url).query(null, function () {
@@ -32,7 +27,11 @@ angular.module('myApp.controllers', [])
             angular.forEach(items, function (item) {
                 console.log("Get some resources " + item.firstname + " " + item.lastname + " ");
 
-                console.log("Here's a related $resource object: ", item.links.self);
+                console.log("Here's a related $resource object: ", item.links);
+                angular.forEach(item.links, function (link) {
+                    console.log("link ", link.href);
+                    console.log("------");
+                });
             });
         });
 

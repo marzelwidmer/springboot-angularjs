@@ -20,7 +20,7 @@
 	<h1 layout:fragment="header">Customer : View all {{getTotalCustomers()}} </h1>
     <p><a href="/loadDataAngular">Load test data</a> | <a href="/clearDataAngular">Clear test data</a> | <a href="/api/customer">Customer API</a></p>
 	<div layout:fragment="content">
-		<div class="container" >
+		<div class="container" ng-controller="CustomerController">
 			<div class="panel panel-default">
 				<table class="table table-striped table-condensed">
 
@@ -57,6 +57,7 @@
 <script src="../bower_components/angular-route/angular-route.js"></script>
 <script src="../bower_components/angular-resource/angular-resource.js"></script>
 <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/angular-hateoas/src/angular-hateoas.js"></script>
 <!--
 <script src="../bower_components/rfc6570/rfc6570.js"></script>
 <script src="../bower_components/angular-hal/angular-hal.js"></script>

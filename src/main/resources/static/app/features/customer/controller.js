@@ -41,6 +41,16 @@ angular.module('myApp.controllers', [])
         });
 
 
+        // callback for ng-click 'deleteUser':
+        $scope.deleteMe = function (customerId) {
+            console.log("Delelet Customer");
+            $http.delete("http://localhost:8080/hal/customer/5");
+        };
+
+
+
+
+
         /**
          * Constructor, with class name
          */

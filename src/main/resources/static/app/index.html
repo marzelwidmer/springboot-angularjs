@@ -59,15 +59,12 @@
                     </thead>
                     <tbody>
 
-                    <tr ng-repeat="customer in customersHal">
+                    <tr ng-repeat="customer in customerList">
                         <td>{{customer.firstname}}</td>
                         <td>{{customer.lastname}}</td>
-                        <td>
-                            <p ng-repeat="link in customer.getLinks() track by $index">
-                                <a href="{{link}}">{{link}}</a>
-                            </p>
+                        <td><a href="{{customer.selfLink}}">{{customer.selfLink}}</a>
                         </td>
-                        <td><a ng-click="deleteMe(customer.id)" class="btn btn-small btn-danger">delete</a></td>
+                        <td><a ng-click="deleteMe(customer.selfLink)" class="btn btn-small btn-danger">delete</a></td>
                     </tr>
                     </tbody>
                 </table>

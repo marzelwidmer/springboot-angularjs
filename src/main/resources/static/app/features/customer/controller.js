@@ -15,11 +15,16 @@ angular.module('myApp.controllers', [])
             $scope.customers = ServiceClient.query();
         };
     })
-    .controller('CustomerController', function ($log, $scope, $http, $resource) {
+    .controller('CustomerController', function ($log, $scope, $http, $resource, CustomerServiceClient) {
         'use strict';
-        var url = "http://localhost:8080/hal/customer/ ";
 
-        $scope.customersHal = [];
+        // GET ALL
+        $scope.customerResource = CustomerServiceClient.query(); //fetch all
+        console.log($scope.customerResource.length);
+
+        var url = "http://localhost:8080/hal/customer/ ";
+        $scope.customerList = [];
+
 
         // also works with array results from $resource(...).query()
         var response = $resource(url).query(null, function () {
@@ -31,24 +36,23 @@ angular.module('myApp.controllers', [])
                 user.lastname = customer.lastname;
                 console.log(user.firstname +  " " + user.lastname);
 
+                // TODO workaround to get the self link at the moment we only have one
+                // FIXME
                 angular.forEach(customer.links, function (link) {
                     console.log("link:" + link.href);
-                    user.addLink(link.href);
-                    console.log("total links " + user.getTotalLinks());
+                    user.addSelfLink(link.href);
                 });
-                $scope.customersHal.push(user);
+                $scope.customerList.push(user);
             });
         });
 
 
-        // callback for ng-click 'deleteUser':
-        $scope.deleteMe = function (customerId) {
-            console.log("Delelet Customer");
-            $http.delete("http://localhost:8080/hal/customer/5");
+        $scope.deleteMe = function (url) {
+            console.log("Delelet Customer " + url);
+            $http.delete(url);
+           // CustomerServiceClient.delete(url);
+            //$scope.customerList = CustomerServiceClient.query();
         };
-
-
-
 
 
         /**
@@ -59,17 +63,15 @@ angular.module('myApp.controllers', [])
             // Public properties, assigned to the instance ('this')
             this.firstname = firstname;
             this.lastname = lastname;
-            var links = [];
+            this.selfLink;
 
             return {
-                addLink : function (link){
-                    links.push(link);
+                addSelfLink : function (link){
+                    this.selfLink = link;
                 },
-                getTotalLinks : function(){
-                    return links.length;
-                },
-                getLinks : function(){
-                    return links;
+
+                getSelfLink : function(){
+                    return selfLink;
                 }
             };
         }

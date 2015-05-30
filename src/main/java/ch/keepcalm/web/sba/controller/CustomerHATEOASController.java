@@ -40,10 +40,8 @@ public class CustomerHATEOASController {
             resource.setFirstname(customer.getFirstname());
             resource.setLastname(customer.getLastname());
             Link detail = linkTo(CustomerHATEOASController.class).slash(customer.getId()).withSelfRel();
-            Link delete = linkTo(CustomerHATEOASController.class).slash(customer.getId()).withRel("delete");
 
             resource.add(detail);
-            resource.add(delete);
             resources.add(resource);
         }
         return resources;

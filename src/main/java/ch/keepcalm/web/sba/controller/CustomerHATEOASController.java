@@ -63,12 +63,6 @@ public class CustomerHATEOASController {
     }
 
 
-
-
-
-
-
-
     public static class ShortContact extends ResourceSupport {
 
         private String firstname;
@@ -81,8 +75,6 @@ public class CustomerHATEOASController {
         public void setLastname(String lastname) {
             this.lastname = lastname;
         }
-
-
 
         public String getFirstname() {
             return firstname;

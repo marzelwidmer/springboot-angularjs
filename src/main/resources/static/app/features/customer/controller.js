@@ -31,7 +31,7 @@ angular.module('myApp.controllers', [])
                 var user = new User();
                 user.firstname = customer.firstname;
                 user.lastname = customer.lastname;
-                console.log(user.firstname +  " " + user.lastname);
+                console.log(user.firstname + " " + user.lastname);
 
                 // TODO workaround to get the self link at the moment we only have one
                 // FIXME
@@ -45,10 +45,10 @@ angular.module('myApp.controllers', [])
 
 
         $scope.deleteMe = function (url) {
-            console.log("Delelet Customer " + url);
+            console.log("Delete Customer " + url);
             $http.delete(url);
-           // CustomerServiceClient.delete(url);
-            //$scope.customerList = CustomerServiceClient.query();
+            // CustomerServiceClient.delete(url);
+            // $scope.customerList = CustomerServiceClient.query();
         };
         /**
          * Constructor, with class name
@@ -61,11 +61,11 @@ angular.module('myApp.controllers', [])
             this.selfLink;
 
             return {
-                addSelfLink : function (link){
+                addSelfLink: function (link) {
                     this.selfLink = link;
                 },
 
-                getSelfLink : function(){
+                getSelfLink: function () {
                     return selfLink;
                 }
             };
@@ -89,11 +89,11 @@ angular.module('myApp.controllers', [])
             this.selfLink;
 
             return {
-                addSelfLink : function (link){
+                addSelfLink: function (link) {
                     this.selfLink = link;
                 },
 
-                getSelfLink : function(){
+                getSelfLink: function () {
                     return selfLink;
                 }
             };
@@ -101,28 +101,38 @@ angular.module('myApp.controllers', [])
     }).controller('CustomerController3', function ($log, $scope, $http, $resource, CustomerServiceClient, HateoasInterface) {
         'use strict';
         var url = "http://localhost:8080/hal/customer/:id ";
+
         var personResource = $resource(url);
 
         $scope.customerList = [];
-        var user = new User();
-        var people = personResource.query(null, function () {
 
-            var firstPerson = people[0];
-            console.log("Here's a firstperson firstname:" + firstPerson.firstname + " lastname:" + firstPerson.lastname);
-            console.log("link: " + firstPerson.links[0].href + " rel : " + firstPerson.links[0].rel);
-
-            var firstcustomer = $resource(firstPerson.links[0].href).get(null, function () {
-                console.log("Here's a related $resource object: ID:", firstcustomer.id + " firstname:" + firstcustomer.firstname + " lastName:" + firstcustomer.lastname);
-
-                //var user = new User(firstcustomer.id, firstcustomer.firstname, firstcustomer.lastname,firstPerson.links[0].href);
-                user.setId(firstcustomer.id);
-                user.setFirstname(firstcustomer.firstname);
-                user.setLastname(firstcustomer.lastname);
-                user.setSelfLink(firstPerson.links[0].href);
-                $scope.customerList.push(user);
-
+        var response = personResource.query(null, function () {
+            angular.forEach(response, function (customer) {
+                var user = new User();
+                // TODO workaround to get the self link at the moment we only have one
+                // FIXME
+                angular.forEach(customer.links, function (link) {
+                    var customerDetails = $resource(link.href).get(null, function () {
+                        user.setId(customerDetails.id);
+                        user.setFirstname(customerDetails.firstname);
+                        user.setLastname(customerDetails.lastname);
+                        user.setSelfLink(link.href);
+                        $scope.customerList.push(user);
+                        console.log("--------------------");
+                        console.log("link:" + link.href + " rel:" + link.rel);
+                        console.log("--------------------");
+                        console.log("Add Customer ID:", customerDetails.id + " firstname:" + customerDetails.firstname + " lastName:" + customerDetails.lastname + " selfLink:" + link.href);
+                    });
+                });
             });
         });
+
+
+        $scope.removeCustomer = function (url, index) {
+            console.log("Delete Customer " + url);
+            $http.delete(url);
+            $scope.customerList.splice(index,1);
+        };
 
 
 
@@ -138,28 +148,28 @@ angular.module('myApp.controllers', [])
             this.selfLink;
 
             return {
-                setId : function (id){
+                setId: function (id) {
                     this.id = id;
                 },
-                getId : function(){
+                getId: function () {
                     return id;
                 },
-                setFirstname : function (firstname){
+                setFirstname: function (firstname) {
                     this.firstname = firstname;
                 },
-                getFirstname : function(){
+                getFirstname: function () {
                     return firstname;
                 },
-                setLastname : function (lastname){
+                setLastname: function (lastname) {
                     this.lastname = lastname;
                 },
-                getLastname : function(){
+                getLastname: function () {
                     return lastname;
                 },
-                setSelfLink : function (link){
+                setSelfLink: function (link) {
                     this.selfLink = link;
                 },
-                getSelfLink : function(){
+                getSelfLink: function () {
                     return selfLink;
                 }
             };

@@ -88,7 +88,7 @@
                     </thead>
                     <tbody>
 
-                    <tr ng-repeat="customer in customerList">
+                    <tr ng-repeat="customer in customerList track by $index">
                         <td>{{customer.firstname}}</td>
                         <td>{{customer.lastname}}</td>
                         <td><a href="{{customer.selfLink}}">{{customer.selfLink}}</a>
@@ -122,8 +122,7 @@
                         <td>{{customer.firstname}}</td>
                         <td>{{customer.lastname}}</td>
                         <td><a href="{{customer.selfLink}}">{{customer.selfLink}}</a></td>
-
-                        <td><a ng-click="deleteMe(customer.selfLink)" class="btn btn-small btn-danger">delete</a></td>
+                        <td><a ng-click="removeCustomer(customer.selfLink, $index)" class="btn btn-small btn-danger">delete</a></td>
                     </tr>
                     </tbody>
                 </table>

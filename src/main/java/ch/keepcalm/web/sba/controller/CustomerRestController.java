@@ -3,7 +3,6 @@ package ch.keepcalm.web.sba.controller;
 import ch.keepcalm.web.sba.domain.Customer;
 import ch.keepcalm.web.sba.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.ResourceSupport;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +23,7 @@ public class CustomerRestController {
         return customerService.findAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
     public Customer customer(@PathVariable Long id) {
         Customer customer = customerService.findOne(id);
         return customer;
@@ -44,30 +43,4 @@ public class CustomerRestController {
         customer.setId(id);
         customerService.delete(customer);
     }
-
-
-
-    public static class ShortContact extends ResourceSupport {
-
-        private String firstname;
-        private String lastname;
-
-        public String getLastname() {
-            return lastname;
-        }
-
-        public void setLastname(String lastname) {
-            this.lastname = lastname;
-        }
-
-
-        public String getFirstname() {
-            return firstname;
-        }
-
-        public void setFirstname(String firstname) {
-            this.firstname = firstname;
-        }
-    }
-
 }

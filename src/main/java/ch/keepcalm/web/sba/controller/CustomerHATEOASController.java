@@ -63,6 +63,11 @@ public class CustomerHATEOASController {
 
 
 
+
+
+
+
+
     public static class ShortContact extends ResourceSupport {
 
         private String firstname;

@@ -6,14 +6,4 @@ angular.module ( 'myApp.services', [] ).factory ( 'ServiceClient', function ( $r
             method : 'PUT'
         }
     } );
-})
-.factory ( 'CustomerServiceClient', function ( $resource ) {
-    'use strict';
-    // TODO  Implement user links
-    var url = "http://localhost:8080/hal/customer/ ";
-    return $resource ( url, {}, {
-       update : {
-            method : 'PUT'
-        }
-    } );
 });

@@ -18,7 +18,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
  */
 @RestController
 @RequestMapping("/hal/customer/")
-public class CustomerHalController {
+public class CustomerHATEOASController {
 
     @Autowired
     private CustomerService customerService;
@@ -39,7 +39,7 @@ public class CustomerHalController {
             ShortContact resource = new ShortContact();
             resource.setFirstname(customer.getFirstname());
             resource.setLastname(customer.getLastname());
-            Link detail = linkTo(CustomerHalController.class).slash(customer.getId()).withSelfRel();
+            Link detail = linkTo(CustomerHATEOASController.class).slash(customer.getId()).withSelfRel();
             resource.add(detail);
             resources.add(resource);
         }

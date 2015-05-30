@@ -1,4 +1,3 @@
-
 angular.module('myApp.controllers', [])
     .controller('EmpController', function ($log, $scope, $http, ServiceClient) {
         'use strict';
@@ -12,72 +11,39 @@ angular.module('myApp.controllers', [])
 
         // callback for ng-click 'deleteUser':
         $scope.deleteCustomer = function (customerId) {
-            ServiceClient.delete({ id: customerId });
+            ServiceClient.delete({id: customerId});
             $scope.customers = ServiceClient.query();
         };
     })
     .controller('CustomerController', function ($log, $scope, $http, $resource) {
         'use strict';
-        console.log("CustomerController try to get a HAL RESOURCE");
         var url = "http://localhost:8080/hal/customer/ ";
 
+        $scope.customersHal = [];
+
         // also works with array results from $resource(...).query()
-        var items = $resource(url).query(null, function () {
-            console.log(items.length);
+        var response = $resource(url).query(null, function () {
+            console.log("Found  " + response.length + " customers on URL " + url);
 
-            // TODO create a Customer class with a list of links
-            $scope.customersHal = [];
+            angular.forEach(response, function (customer) {
+                angular.forEach(customer.links, function (link) {
+                    console.log("firstname:" + customer.firstname + " lastname:" + customer.lastname + " link:" + link.href);
+                    console.log("------ create user object");
+                    //$scope.customersHal = new User(customer.firstname,  customer.lastname, link.href);
 
-            angular.forEach(items, function (item) {
-                $scope.customersHal.push(item);
-
-                console.log("Get some resources " + item.firstname + " " + item.lastname + " ");
-                console.log("Here's a related $resource object: ", item.links);
-                angular.forEach(item.links, function (link) {
-                    console.log("link ", link.href);
-                    console.log("------");
-                });
-
-
-
-                // test output
-                angular.forEach($scope.customersHal, function (customer) {
-                    console.log("customer ", customer.firstname + "  " + customer.lastname);
-                    console.log("------");
+                    $scope.customersHal.push(new User(customer.firstname,  customer.lastname, link.href));
                 });
             });
         });
 
+
+        /**
+         * Constructor, with class name
+         */
+        function User(firstname, lastname, link) {
+            // Public properties, assigned to the instance ('this')
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.link = link;
+        }
     });
-
-
-
-
-
-/*
-var item = $resource("/hal/customer").get(null, function () {
-    console.log("Here's a related $resource object: ", item.resource("some-related-endpoint"));
-});
-
-// also works with array results from $resource(...).query()
-var items = $resource("/hal/customer").query(null, function () {
-    angular.forEach(items, function (item) {
-        console.log("Here's a related $resource object: ", item.resource("some-related-endpoint"));
-    });
-});
-
-
-
-
-var personResource = $resource("/hal/customer/:id");
-
-var people = personResource.query(null, function () {
-    var firstPerson = people[0];
-    var firstPersonAddresses = new HateoasInterface(firstPerson).resource("addresses").query(null, function () {
-        console.log(firstPersonAddresses);
-    });
-});
-
-
-
-*/

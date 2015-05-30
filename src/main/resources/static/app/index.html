@@ -50,7 +50,6 @@
 
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>FirstName</th>
                         <th>LastName</th>
                         <th>Link</th>
@@ -60,11 +59,10 @@
                     <tbody>
 
                     <tr ng-repeat="customer in customersHal">
-                        <td></td>
                         <td>{{customer.firstname}}</td>
                         <td>{{customer.lastname}}</td>
-                        <td></td>
-                        <td><a ng-click="deleteCustomer(customer.id)" class="btn btn-small btn-danger">delete</a></td>
+                        <td><a href="{{customer.link}}">{{customer.link}}</a></td>
+                        <td>&nbsp;</td>
                     </tr>
                     </tbody>
                 </table>

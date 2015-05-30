@@ -1,7 +1,7 @@
 
 [http://marzelwidmer.github.io/springboot-angularjs/](http://marzelwidmer.github.io/springboot-angularjs/)
 
-# AngularJS
+# AngularJS (https://github.com/jmarquis/angular-hateoas)
  springboot-angularjs/src/main/resources/static: bower install
 
 # Maven Package

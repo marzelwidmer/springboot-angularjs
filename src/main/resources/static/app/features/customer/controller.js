@@ -1,14 +1,11 @@
 angular.module('myApp.controllers', [])
     .controller('EmpController', function ($log, $scope, $http, ServiceClient) {
         'use strict';
-
         // GET ALL
         $scope.customers = ServiceClient.query(); //fetch all
         $scope.getTotalCustomers = function () {
             return $scope.customers.length;
         };
-
-
         // callback for ng-click 'deleteUser':
         $scope.deleteCustomer = function (customerId) {
             ServiceClient.delete({id: customerId});
@@ -19,8 +16,8 @@ angular.module('myApp.controllers', [])
         'use strict';
 
         // GET ALL
-        $scope.customerResource = CustomerServiceClient.query(); //fetch all
-        console.log($scope.customerResource.length);
+        //$scope.customerResource = CustomerServiceClient.query(); //fetch all
+        //console.log($scope.customerResource.length);
 
         var url = "http://localhost:8080/hal/customer/ ";
         $scope.customerList = [];
@@ -53,6 +50,32 @@ angular.module('myApp.controllers', [])
            // CustomerServiceClient.delete(url);
             //$scope.customerList = CustomerServiceClient.query();
         };
+        /**
+         * Constructor, with class name
+         */
+        function User(firstname, lastname) {
+            "use strict";
+            // Public properties, assigned to the instance ('this')
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.selfLink;
+
+            return {
+                addSelfLink : function (link){
+                    this.selfLink = link;
+                },
+
+                getSelfLink : function(){
+                    return selfLink;
+                }
+            };
+        }
+    }).controller('CustomerController2', function ($log, $scope, $http, $resource, CustomerServiceClient) {
+        'use strict';
+
+        // GET ALL
+        $scope.customerList = CustomerServiceClient.query(); //fetch all
+        console.log($scope.customerList.length);
 
 
         /**
@@ -75,7 +98,71 @@ angular.module('myApp.controllers', [])
                 }
             };
         }
+    }).controller('CustomerController3', function ($log, $scope, $http, $resource, CustomerServiceClient, HateoasInterface) {
+        'use strict';
+        var url = "http://localhost:8080/hal/customer/:id ";
+        var personResource = $resource(url);
+
+        $scope.customerList = [];
+        var user = new User();
+        var people = personResource.query(null, function () {
+
+            var firstPerson = people[0];
+            console.log("Here's a firstperson firstname:" + firstPerson.firstname + " lastname:" + firstPerson.lastname);
+            console.log("link: " + firstPerson.links[0].href + " rel : " + firstPerson.links[0].rel);
+
+            var firstcustomer = $resource(firstPerson.links[0].href).get(null, function () {
+                console.log("Here's a related $resource object: ID:", firstcustomer.id + " firstname:" + firstcustomer.firstname + " lastName:" + firstcustomer.lastname);
+
+                //var user = new User(firstcustomer.id, firstcustomer.firstname, firstcustomer.lastname,firstPerson.links[0].href);
+                user.setId(firstcustomer.id);
+                user.setFirstname(firstcustomer.firstname);
+                user.setLastname(firstcustomer.lastname);
+                user.setSelfLink(firstPerson.links[0].href);
+                $scope.customerList.push(user);
+
+            });
+        });
 
 
+
+        /**
+         * Constructor, with class name
+         */
+        function User() {
+            "use strict";
+            // Public properties, assigned to the instance ('this')
+            this.id;
+            this.firstname;
+            this.lastname;
+            this.selfLink;
+
+            return {
+                setId : function (id){
+                    this.id = id;
+                },
+                getId : function(){
+                    return id;
+                },
+                setFirstname : function (firstname){
+                    this.firstname = firstname;
+                },
+                getFirstname : function(){
+                    return firstname;
+                },
+                setLastname : function (lastname){
+                    this.lastname = lastname;
+                },
+                getLastname : function(){
+                    return lastname;
+                },
+                setSelfLink : function (link){
+                    this.selfLink = link;
+                },
+                getSelfLink : function(){
+                    return selfLink;
+                }
+            };
+        }
 
     });

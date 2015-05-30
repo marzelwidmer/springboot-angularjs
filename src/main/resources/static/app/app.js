@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module ( 'myApp', [ 'ui.router', 'ngResource', 'myApp.controllers', 'myApp.services', 'hateoas' ] );
+var app = angular.module ( 'myApp', [ 'ui.router', 'ngResource', 'myApp.controllers', 'myApp.services', 'hateoas'] );
 
 /*
 app.config(function (HateoasInterceptorProvider) {

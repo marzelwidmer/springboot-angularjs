@@ -37,8 +37,6 @@
 						<td>{{customer.id}}</td>
 						<td>{{customer.firstname}}</td>
                         <td>{{customer.lastname}}</td>
-
-
 						<td><a ng-click="deleteCustomer(customer.id)" class="btn btn-small btn-danger">delete</a></td>
 					</tr>
 					</tbody>
@@ -52,7 +50,7 @@
                     <tr>
                         <th>FirstName</th>
                         <th>LastName</th>
-                        <th>Link</th>
+                        <th>Links</th>
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
@@ -61,8 +59,12 @@
                     <tr ng-repeat="customer in customersHal">
                         <td>{{customer.firstname}}</td>
                         <td>{{customer.lastname}}</td>
-                        <td><a href="{{customer.link}}">{{customer.link}}</a></td>
-                        <td>&nbsp;</td>
+                        <td>
+							<p ng-repeat="link in customer.getLinks() track by $index">
+							<a href="{{link}}">{{link}}</a>
+							</p>
+						</td>
+						<td><a ng-click="deleteCustomer(customer.id)" class="btn btn-small btn-danger">delete</a></td>
                     </tr>
                     </tbody>
                 </table>

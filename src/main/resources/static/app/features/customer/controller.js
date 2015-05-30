@@ -26,13 +26,17 @@ angular.module('myApp.controllers', [])
             console.log("Found  " + response.length + " customers on URL " + url);
 
             angular.forEach(response, function (customer) {
-                angular.forEach(customer.links, function (link) {
-                    console.log("firstname:" + customer.firstname + " lastname:" + customer.lastname + " link:" + link.href);
-                    console.log("------ create user object");
-                    //$scope.customersHal = new User(customer.firstname,  customer.lastname, link.href);
+                var user = new User();
+                user.firstname = customer.firstname;
+                user.lastname = customer.lastname;
+                console.log(user.firstname +  " " + user.lastname);
 
-                    $scope.customersHal.push(new User(customer.firstname,  customer.lastname, link.href));
+                angular.forEach(customer.links, function (link) {
+                    console.log("link:" + link.href);
+                    user.addLink(link.href);
+                    console.log("total links " + user.getTotalLinks());
                 });
+                $scope.customersHal.push(user);
             });
         });
 
@@ -40,10 +44,26 @@ angular.module('myApp.controllers', [])
         /**
          * Constructor, with class name
          */
-        function User(firstname, lastname, link) {
+        function User(firstname, lastname) {
+            "use strict";
             // Public properties, assigned to the instance ('this')
             this.firstname = firstname;
             this.lastname = lastname;
-            this.link = link;
+            var links = [];
+
+            return {
+                addLink : function (link){
+                    links.push(link);
+                },
+                getTotalLinks : function(){
+                    return links.length;
+                },
+                getLinks : function(){
+                    return links;
+                }
+            };
         }
+
+
+
     });

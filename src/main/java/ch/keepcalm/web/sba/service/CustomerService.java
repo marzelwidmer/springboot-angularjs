@@ -23,11 +23,15 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    @Transactional
+    public void add(Customer customer) {
+        this.customerRepository.saveAndFlush(customer);
+    }
 
     @Transactional
-    public void add(String name) {
+    public void add(String firstname) {
         final Customer customer = new Customer();
-        customer.setLastname(name);
+        customer.setFirstname(firstname);
         this.customerRepository.saveAndFlush(customer);
     }
 
@@ -40,4 +44,5 @@ public class CustomerService {
     public Customer findOne(Long id) {
         return customerRepository.getOne(id);
     }
+
 }

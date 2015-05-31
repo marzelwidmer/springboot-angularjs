@@ -24,6 +24,7 @@ public class ReadyControllerTest {
         RestTemplate restTemplate = new RestTemplate();
         assertEquals("SBAUP", restTemplate.getForObject(
                 "http://127.0.0.1:7777/ready/ready.jsp", String.class));
-
     }
+
+
 }

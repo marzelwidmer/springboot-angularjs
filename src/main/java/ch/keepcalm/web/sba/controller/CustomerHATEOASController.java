@@ -1,11 +1,13 @@
 package ch.keepcalm.web.sba.controller;
 
 import ch.keepcalm.web.sba.domain.Customer;
+import ch.keepcalm.web.sba.repository.CustomerRepository;
 import ch.keepcalm.web.sba.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class CustomerHATEOASController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    CustomerRepository customerRepository;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Customer customer(@PathVariable Long id) {
@@ -47,11 +51,14 @@ public class CustomerHATEOASController {
         return resources;
     }
 
+   @RequestMapping(value = "/", method = RequestMethod.POST)
+   public ResponseEntity<Customer> add(@RequestBody Customer customer) {
+       // TODO evtl. call over service layert ?
+       this.customerService.add(customer);
+       return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+   }
 
-    @RequestMapping("add/{name}")
-    public void addCustomer(@PathVariable String name) {
-        this.customerService.add(name);
-    }
+
 
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)

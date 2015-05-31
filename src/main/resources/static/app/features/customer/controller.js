@@ -45,46 +45,99 @@ angular.module('myApp.controllers', [])
         $scope.removeCustomer = function (url, index) {
             console.log("Delete Customer " + url);
             $http.delete(url);
-            $scope.customerList.splice(index,1);
+            $scope.customerList.splice(index, 1);
+        };
+    })
+    .controller('CustomerSubmitController', function ($log, $scope, $http, $resource) {
+        'use strict';
+        var url = "http://localhost:8080/hal/customer/ ";
+
+        $scope.register = function() {
+            console.log("Register new customer " + $scope.firstname + " " + $scope.lastname);
+
+            var user = new User();
+            user.firstname = $scope.firstname;
+            user.lastname = $scope.lastname;
+
+
+            $http.put(url + {"lastname":$scope.lastname,"firstname":$scope.firstname});
+            console.log("Add new Customer " + user);
+
+/*            $scope.successMessages = '';
+            $scope.errorMessages = '';
+            $scope.errors = {};
+
+            Members.save($scope.newMember, function(data) {
+
+                // mark success on the registration form
+                $scope.successMessages = [ 'Member Registered' ];
+
+                // Update the list of members
+                $scope.refresh();
+
+                // Clear the form
+                $scope.reset();
+            }, function(result) {
+                if ((result.status == 409) || (result.status == 400)) {
+                    $scope.errors = result.data;
+                } else {
+                    $scope.errorMessages = [ 'Unknown  server error' ];
+                }
+                $scope.$apply();
+            });*/
+
         };
 
 
-        /**
-         * Constructor, with class name
-         */
-        function User() {
-            "use strict";
-            // Public properties, assigned to the instance ('this')
-            this.id;
-            this.firstname;
-            this.lastname;
-            this.selfLink;
 
-            return {
-                setId: function (id) {
-                    this.id = id;
-                },
-                getId: function () {
-                    return id;
-                },
-                setFirstname: function (firstname) {
-                    this.firstname = firstname;
-                },
-                getFirstname: function () {
-                    return firstname;
-                },
-                setLastname: function (lastname) {
-                    this.lastname = lastname;
-                },
-                getLastname: function () {
-                    return lastname;
-                },
-                setSelfLink: function (link) {
-                    this.selfLink = link;
-                },
-                getSelfLink: function () {
-                    return selfLink;
-                }
-            };
-        }
+/*        $scope.firstname;
+        $scope.lastname;
+
+        var user = new User();
+        user.firstname = $scope.firstname;
+        user.lastname = $scope.lastname;
+        console.log("Add new Customer " + user);
+        if(user.firstname){
+            $http.put(url, user);
+        }*/
     });
+
+
+/**
+ * Constructor, with class name
+ */
+function User() {
+    "use strict";
+    // Public properties, assigned to the instance ('this')
+    this.id;
+    this.firstname;
+    this.lastname;
+    this.selfLink;
+
+    return {
+        setId: function (id) {
+            this.id = id;
+        },
+        getId: function () {
+            return id;
+        },
+        setFirstname: function (firstname) {
+            this.firstname = firstname;
+        },
+        getFirstname: function () {
+            return firstname;
+        },
+        setLastname: function (lastname) {
+            this.lastname = lastname;
+        },
+        getLastname: function () {
+            return lastname;
+        },
+        setSelfLink: function (link) {
+            this.selfLink = link;
+        },
+        getSelfLink: function () {
+            return selfLink;
+        }
+    };
+}

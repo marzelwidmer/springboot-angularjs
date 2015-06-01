@@ -58,10 +58,17 @@ angular.module('myApp.controllers', [])
             var user = new User();
             user.firstname = $scope.firstname;
             user.lastname = $scope.lastname;
+            $http.put(url, user);
 
-
-            $http.put(url + {"lastname":$scope.lastname,"firstname":$scope.firstname});
             console.log("Add new Customer " + user);
+            /*
+            user.lastname = $scope.lastname;
+
+          $http.put(url + {"lastname":$scope.lastname,"firstname":$scope.firstname});
+            console.log("Add new Customer " + user);*/
+
+
+
 
 /*            $scope.successMessages = '';
             $scope.errorMessages = '';

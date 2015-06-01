@@ -58,7 +58,8 @@ angular.module('myApp.controllers', [])
             var user = new User();
             user.firstname = $scope.firstname;
             user.lastname = $scope.lastname;
-            $http.put(url, user);
+            $http.put(url , {"lastname":$scope.lastname,"firstname":$scope.firstname});
+            $http.post(url, user);
 
             console.log("Add new Customer " + user);
             /*

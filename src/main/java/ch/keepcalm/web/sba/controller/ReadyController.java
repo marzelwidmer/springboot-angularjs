@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReadyController {
 
 
-    @RequestMapping("/ready/ready.jsp")
+    @RequestMapping("/ready/")
     public String ready() {
         return "SBAUP";
     }

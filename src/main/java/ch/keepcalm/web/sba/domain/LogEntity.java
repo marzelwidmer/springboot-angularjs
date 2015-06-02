@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by hkesq on 01.06.2015.
@@ -14,9 +15,43 @@ import java.util.Arrays;
 //@Table(name = "T_SPA_LOGS", schema = "TAEADM", catalog = "")
 @Table
 public class LogEntity {
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created", nullable = false)
+    private Date created;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated", nullable = false)
+    private Date updated;
+
+    @PrePersist
+    protected void onCreate() {
+        updated = created = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updated = new Date();
+    }
+
+
+
+
     private String spaClientApplikation;
     private String spaClientVersion;
+
     private Timestamp spaTimestamp;
+    @Basic
+    @Column(name="SPA_TIMESTAMP", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Timestamp getSpaTimestamp() {
+        return spaTimestamp;
+    }
+
+    public void setSpaTimestamp(Timestamp spaTimestamp) {
+        this.spaTimestamp = spaTimestamp;
+    }
     private byte[] spaMeldung;
     private String spaCorrelationId;
     private String spaFaultType;
@@ -39,7 +74,6 @@ public class LogEntity {
     }
 
 
-
     @Basic
     @Column(name = "SPA_CLIENT_APPLIKATION")
     public String getSpaClientApplikation() {
@@ -60,15 +94,7 @@ public class LogEntity {
         this.spaClientVersion = spaClientVersion;
     }
 
-    @Basic
-    @Column(name = "SPA_TIMESTAMP")
-    public Timestamp getSpaTimestamp() {
-        return spaTimestamp;
-    }
 
-    public void setSpaTimestamp(Timestamp spaTimestamp) {
-        this.spaTimestamp = spaTimestamp;
-    }
 
     @Basic
     @Column(name = "SPA_MELDUNG")

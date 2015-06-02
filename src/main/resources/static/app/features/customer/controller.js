@@ -12,6 +12,21 @@ angular.module('myApp.controllers', [])
             $scope.customers = ServiceClient.query();
         };
     })
+
+
+
+    .controller('CustomerClientController', function ($log, $scope, $http, CustomerServiceClient) {
+        'use strict';
+
+
+        // http://blog.mgechev.com/2014/02/05/angularjs-resource-active-record-http/
+
+
+
+    })
+
+
+
     .controller('CustomerController', function ($log, $scope, $http, $resource) {
         'use strict';
         var url = "http://localhost:8080/hal/customer/:id ";
@@ -41,7 +56,7 @@ angular.module('myApp.controllers', [])
             });
         });
 
-        // Remove / Delelete Customer
+        // Remove / Delete Customer
         $scope.removeCustomer = function (url, index) {
             console.log("Delete Customer " + url);
             $http.delete(url);
@@ -58,56 +73,9 @@ angular.module('myApp.controllers', [])
             var user = new User();
             user.firstname = $scope.firstname;
             user.lastname = $scope.lastname;
-            $http.put(url , {"lastname":$scope.lastname,"firstname":$scope.firstname});
             $http.post(url, user);
-
             console.log("Add new Customer " + user);
-            /*
-            user.lastname = $scope.lastname;
-
-          $http.put(url + {"lastname":$scope.lastname,"firstname":$scope.firstname});
-            console.log("Add new Customer " + user);*/
-
-
-
-
-/*            $scope.successMessages = '';
-            $scope.errorMessages = '';
-            $scope.errors = {};
-
-            Members.save($scope.newMember, function(data) {
-
-                // mark success on the registration form
-                $scope.successMessages = [ 'Member Registered' ];
-
-                // Update the list of members
-                $scope.refresh();
-
-                // Clear the form
-                $scope.reset();
-            }, function(result) {
-                if ((result.status == 409) || (result.status == 400)) {
-                    $scope.errors = result.data;
-                } else {
-                    $scope.errorMessages = [ 'Unknown  server error' ];
-                }
-                $scope.$apply();
-            });*/
-
         };
-
-
-
-/*        $scope.firstname;
-        $scope.lastname;
-
-        var user = new User();
-        user.firstname = $scope.firstname;
-        user.lastname = $scope.lastname;
-        console.log("Add new Customer " + user);
-        if(user.firstname){
-            $http.put(url, user);
-        }*/
     });
 
 
@@ -149,3 +117,40 @@ function User() {
         }
     };
 }
+
+
+
+
+
+app.factory('User', function ($cacheFactory, $resource) {
+/*
+    var User = $resource('/users/:userid', {}, {
+*/
+    var User = $resource('http://localhost:8080/hal/customer/ ', {}, {
+        get: { cache: true, method: 'get' }
+    });
+    return User;
+})
+
+app.controller('MainCtrl', function ($scope, User) {
+    $scope.users = User.query();
+});
+
+app.controller('UserCtrl', function ($scope, user, User, $location) {
+    $scope.user = user;
+    $scope.remove = function () {
+        User.remove({ userid: user.id });
+        $location.path('/');
+    };
+});
+
+app.controller('AddUserCtrl', function ($scope, User, $location) {
+    $scope.save = function () {
+        var user = new User({
+            name: $scope.name,
+            job: $scope.job
+        })
+        user.$save();
+        $location.path('/');
+    };
+});

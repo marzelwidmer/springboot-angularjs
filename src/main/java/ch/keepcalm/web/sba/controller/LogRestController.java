@@ -11,25 +11,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * Created by marcelwidmer on 25/05/15.
  */
 @RestController
-@RequestMapping("/api/log")
+@RequestMapping("/log")
 public class LogRestController {
 
     @Autowired
     private LogRepository repository;
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity log(@RequestBody LogEntity log) {
-        // TODO evtl. call over service layert ?
-        this.repository.saveAndFlush(log);
-        return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity log(@Valid @RequestBody  LogEntity logEntity) {
+        repository.saveAndFlush(logEntity);
+        return new ResponseEntity(logEntity.getId(), HttpStatus.CREATED);
     }
 
 
     @JsonSerialize
     private class EmptyJsonResponse  {
     }
+
+
 }

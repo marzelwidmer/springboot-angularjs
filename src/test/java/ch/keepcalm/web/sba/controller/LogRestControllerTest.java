@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -44,6 +46,12 @@ public class LogRestControllerTest {
         RestTemplate restTemplate = new RestTemplate();
         String log = restTemplate.postForObject(REST_SERVICE_URL, logEntity, String.class);
         assertNotNull(log);
+
+
+        ResponseEntity<LogEntity> logEntityResponseEntity = new ResponseEntity<LogEntity>(logEntity, HttpStatus.CREATED);
+
+        System.out.println(logEntityResponseEntity);
+
 
     }
 

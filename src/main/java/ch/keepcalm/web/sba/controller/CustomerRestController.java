@@ -4,6 +4,7 @@ import ch.keepcalm.web.sba.domain.Customer;
 import ch.keepcalm.web.sba.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class CustomerRestController {
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping("/customer")
+    @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public List<Customer> customer() {
         return customerService.findAll();
     }
@@ -34,6 +35,14 @@ public class CustomerRestController {
     public void addCustomer(@PathVariable String name) {
         this.customerService.add(name);
     }
+    @RequestMapping(value = "/customer", method = RequestMethod.POST)
+    public ResponseEntity<Customer> add(@RequestBody Customer customer) {
+        // TODO evtl. call over service layert ?
+        this.customerService.add(customer);
+        return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
+    }
+
+
 
 
     @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE)

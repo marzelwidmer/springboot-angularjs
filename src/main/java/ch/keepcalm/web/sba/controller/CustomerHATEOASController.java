@@ -41,6 +41,7 @@ public class CustomerHATEOASController {
         List<ShortContact> resources = new ArrayList<ShortContact>(customers.size());
         for(Customer customer : customers) {
             ShortContact resource = new ShortContact();
+            resource.setUserId(customer.getId());
             resource.setFirstname(customer.getFirstname());
             resource.setLastname(customer.getLastname());
             Link detail = linkTo(CustomerHATEOASController.class).slash(customer.getId()).withSelfRel();
@@ -55,7 +56,7 @@ public class CustomerHATEOASController {
    public ResponseEntity<Customer> add(@RequestBody Customer customer) {
        // TODO evtl. call over service layert ?
        this.customerService.add(customer);
-       return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+       return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
    }
 
 
@@ -72,8 +73,18 @@ public class CustomerHATEOASController {
 
     public static class ShortContact extends ResourceSupport {
 
+        private long userId;
         private String firstname;
         private String lastname;
+
+
+        public long getUserId() {
+            return userId;
+        }
+
+        public void setUserId(long userId) {
+            this.userId = userId;
+        }
 
         public String getLastname() {
             return lastname;

@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -115,6 +116,7 @@ public class LoggingStore implements Serializable {
             @Size(min = 1),
             @Size(max = 64)
     })
+    @Pattern(regexp = "\\bDATEN\\b|\\bSYSTEM_SOFT\\b|\\bSYSTEM_SOFT_KOMPATIBILITAET\\b|\\bSYSTEM_SOFT_SCHEMA\\b|\\bSYSTEM_UMGEBUNG\\b")
     @Column(name = "FAULT_TYPE")
     private String faultType;
 
@@ -127,6 +129,7 @@ public class LoggingStore implements Serializable {
             @Size(min = 1),
             @Size(max = 64)
     })
+    @Pattern(regexp = "\\bDEBUG\\b|\\bINFO\\b|\\bERROR\\b|\\bWARNING\\b")
     @Column(name = "SEVERITY")
     private String severity;
 

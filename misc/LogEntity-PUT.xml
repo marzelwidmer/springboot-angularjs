@@ -1,0 +1,29 @@
+<RestClientRequest>
+  <option name="biscuits">
+    <list />
+  </option>
+  <option name="httpMethod" value="POST" />
+  <option name="urlBase" value="http://localhost:8080" />
+  <option name="urlPath" value="/log" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Content-Type" />
+        <option name="value" value="application/json" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list />
+  </option>
+  <option name="parametersEnabled" value="true" />
+  <option name="haveTextToSend" value="true" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="{&quot;spaClientApplikation&quot;:&quot;MANoMANN&quot;,&quot;spaClientVersion&quot;:&quot;my cleint version&quot;,&quot;spaTimestamp&quot;:null,&quot;spaMeldung&quot;:&quot;TWVpbmUgTWVzc2FnZQ==&quot;,&quot;spaCorrelationId&quot;:&quot;my colorrelatinID&quot;,&quot;spaFaultType&quot;:&quot;myFaultType&quot;,&quot;spaFaultCode&quot;:&quot;myFaultCoder&quot;,&quot;spaDebugInformation&quot;:&quot;RGFzIGlzdCBlaW5lIERlYnVnIE1lc3NhZ2U=&quot;,&quot;spaSeverity&quot;:&quot;mySeverity&quot;}" />
+  <option name="filesToSend" value="" />
+</RestClientRequest>

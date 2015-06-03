@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * "clientVersion":"1.0",
  * "correlationId": "11212",
  * "debugInformation":"Hello World",
- * "faultMessage":"Helsana Hello World",
+ * "faultMessage":"Hello World Message",
  * "faultCode":"289-36",
  * "faultType":"DATEN",
  * "severity":"DEBUG"
@@ -42,12 +42,12 @@ public class LoggingRestController {
     public ResponseEntity log(@Valid @RequestBody LoggingStore loggingStore) {
         repository.saveAndFlush(loggingStore);
         return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.CREATED);
+
     }
 
 
     @JsonSerialize
     private class EmptyJsonResponse {
     }
-
 
 }

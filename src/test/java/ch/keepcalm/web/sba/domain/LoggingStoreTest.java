@@ -33,7 +33,7 @@ public class LoggingStoreTest {
         loggingStore.setClientVersion("1.0");
         loggingStore.setCorrelationId("11212");
         loggingStore.setDebugInformation("Hello World");
-        loggingStore.setFaultMessage("Helsana Hello World");
+        loggingStore.setFaultMessage("Message Hello World");
         loggingStore.setFaultCode("289-36");
         loggingStore.setFaultType("DATEN");
         loggingStore.setSeverity("DEBUG");

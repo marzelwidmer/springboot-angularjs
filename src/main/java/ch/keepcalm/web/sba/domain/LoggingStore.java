@@ -65,26 +65,38 @@ public class LoggingStore implements Serializable {
 
     @NotEmpty
     @NotNull
-    @Size(min = 1, max = 30)
+    @Size.List({
+            @Size(min = 1),
+            @Size(max = 30)
+    })
     @Column(name = "CLIENT_APPLIKATION")
     private String clientApplikation;
 
 
     @NotEmpty
     @NotNull
-    @Size(min = 1, max = 1024)
+    @Size.List({
+            @Size(min = 1),
+            @Size(max = 1024)
+    })
     @Column(name = "CLIENT_VERSION")
     private String clientVersion;
 
     @NotEmpty
     @NotNull
-    @Size(min = 1, max = 7000)
+    @Size.List({
+            @Size(min = 1),
+            @Size(max = 7000)
+    })
     @Column(name = "DEBUG_INFORMATION")
     private String debugInformation;
 
     @NotEmpty
     @NotNull
-    @Size(min = 1, max = 256)
+    @Size.List({
+            @Size(min = 1),
+            @Size(max = 256)
+    })
     @Column(name = "FAULT_CODE")
     private String faultCode;
 
@@ -99,7 +111,10 @@ public class LoggingStore implements Serializable {
      */
     @NotEmpty
     @NotNull
-    @Size(min = 1, max = 64)
+    @Size.List({
+            @Size(min = 1),
+            @Size(max = 64)
+    })
     @Column(name = "FAULT_TYPE")
     private String faultType;
 
@@ -108,14 +123,20 @@ public class LoggingStore implements Serializable {
      */
     @NotEmpty
     @NotNull
-    @Size(min = 1, max = 64)
+    @Size.List({
+            @Size(min = 1),
+            @Size(max = 64)
+    })
     @Column(name = "SEVERITY")
     private String severity;
 
 
     @NotEmpty
     @NotNull
-    @Size(min = 1, max = 64)
+    @Size.List({
+            @Size(min = 1),
+            @Size(max = 64)
+    })
     @Column(name = "CORRELATION_ID")
     private String correlationId;
 

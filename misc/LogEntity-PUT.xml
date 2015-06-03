@@ -24,6 +24,6 @@
   <option name="haveTextToSend" value="true" />
   <option name="haveFileToSend" value="false" />
   <option name="isFileUpload" value="false" />
-  <option name="textToSend" value="{&quot;spaClientApplikation&quot;:&quot;MANoMANN&quot;,&quot;spaClientVersion&quot;:&quot;my cleint version&quot;,&quot;spaTimestamp&quot;:null,&quot;spaMeldung&quot;:&quot;TWVpbmUgTWVzc2FnZQ==&quot;,&quot;spaCorrelationId&quot;:&quot;my colorrelatinID&quot;,&quot;spaFaultType&quot;:&quot;myFaultType&quot;,&quot;spaFaultCode&quot;:&quot;myFaultCoder&quot;,&quot;spaDebugInformation&quot;:&quot;RGFzIGlzdCBlaW5lIERlYnVnIE1lc3NhZ2U=&quot;,&quot;spaSeverity&quot;:&quot;mySeverity&quot;}" />
+  <option name="textToSend" value="{&quot;clientApplikation&quot;:&quot;MANoMANN&quot;,&quot;clientVersion&quot;:&quot;my cleint version&quot;,&quot;timestamp&quot;:null,&quot;meldung&quot;:&quot;TWVpbmUgTWVzc2FnZQ==&quot;,&quot;correlationId&quot;:&quot;my colorrelatinID&quot;,&quot;faultType&quot;:&quot;myFaultType&quot;,&quot;faultCode&quot;:&quot;myFaultCoder&quot;,&quot;debugInformation&quot;:&quot;RGFzIGlzdCBlaW5lIERlYnVnIE1lc3NhZ2U=&quot;,&quot;severity&quot;:&quot;mySeverity&quot;}" />
   <option name="filesToSend" value="" />
 </RestClientRequest>

@@ -4,66 +4,55 @@ package ch.keepcalm.web.sba.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
  * Created by hkesq on 01.06.2015.
  */
 @Entity
-//@Table(name = "T_SPA_LOGS", schema = "TAEADM", catalog = "")
-@Table
+//@Table (name = "LOG_ENTITY")
 public class LogEntity {
-
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created", nullable = false)
-    private Date created;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated", nullable = false)
-    private Date updated;
-
-    @PrePersist
-    protected void onCreate() {
-        updated = created = new Date();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updated = new Date();
-    }
-
-
-
-
-    private String spaClientApplikation;
-    private String spaClientVersion;
-
-    private Timestamp spaTimestamp;
-    @Basic
-    @Column(name="SPA_TIMESTAMP", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getSpaTimestamp() {
-        return spaTimestamp;
-    }
-
-    public void setSpaTimestamp(Timestamp spaTimestamp) {
-        this.spaTimestamp = spaTimestamp;
-    }
-    private byte[] spaMeldung;
-    private String spaCorrelationId;
-    private String spaFaultType;
-    private String spaFaultCode;
-    private byte[] spaDebugInformation;
-    private String spaSeverity;
-
 
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
+
+    @Basic
+    @Column(name = "CLIENT_APPLIKATION")
+    private String clientApplikation;
+    @Basic
+    @Column(name = "CLIENT_VERSION")
+    private String clientVersion;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "TIMESTAMP", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private Date timestamp;
+
+    @Column(name = "MELDUNG")
+    private String meldung;
+
+    @Column(name = "CORRELATION_ID")
+    private String correlationId;
+
+    @Column(name = "FAULT_TYPE")
+    private String faultType;
+
+    @Column(name = "FAULT_CODE")
+    private String faultCode;
+
+    @Column(name = "DEBUG_INFORMATION")
+    private String debugInformation;
+
+    @Column(name = "SEVERITY")
+    private String severity;
+
+
+    @PrePersist
+    protected void onCreate() {
+        timestamp = new Date();
+    }
+
 
     public String getId() {
         return id;
@@ -74,86 +63,83 @@ public class LogEntity {
     }
 
 
-    @Basic
-    @Column(name = "SPA_CLIENT_APPLIKATION")
-    public String getSpaClientApplikation() {
-        return spaClientApplikation;
+    public Date getTimestamp() {
+        return timestamp;
     }
 
-    public void setSpaClientApplikation(String spaClientApplikation) {
-        this.spaClientApplikation = spaClientApplikation;
-    }
-
-    @Basic
-    @Column(name = "SPA_CLIENT_VERSION")
-    public String getSpaClientVersion() {
-        return spaClientVersion;
-    }
-
-    public void setSpaClientVersion(String spaClientVersion) {
-        this.spaClientVersion = spaClientVersion;
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
 
-
-    @Basic
-    @Column(name = "SPA_MELDUNG")
-    public byte[] getSpaMeldung() {
-        return spaMeldung;
+    public String getClientApplikation() {
+        return clientApplikation;
     }
 
-    public void setSpaMeldung(byte[] spaMeldung) {
-        this.spaMeldung = spaMeldung;
+    public void setClientApplikation(String clientApplikation) {
+        this.clientApplikation = clientApplikation;
     }
 
-    @Basic
-    @Column(name = "SPA_CORRELATION_ID")
-    public String getSpaCorrelationId() {
-        return spaCorrelationId;
+
+    public String getClientVersion() {
+        return clientVersion;
     }
 
-    public void setSpaCorrelationId(String spaCorrelationId) {
-        this.spaCorrelationId = spaCorrelationId;
+    public void setClientVersion(String clientVersion) {
+        this.clientVersion = clientVersion;
     }
 
-    @Basic
-    @Column(name = "SPA_FAULT_TYPE")
-    public String getSpaFaultType() {
-        return spaFaultType;
+
+    public String getMeldung() {
+        return meldung;
     }
 
-    public void setSpaFaultType(String spaFaultType) {
-        this.spaFaultType = spaFaultType;
+    public void setMeldung(String meldung) {
+        this.meldung = meldung;
     }
 
-    @Basic
-    @Column(name = "SPA_FAULT_CODE")
-    public String getSpaFaultCode() {
-        return spaFaultCode;
+
+    public String getCorrelationId() {
+        return correlationId;
     }
 
-    public void setSpaFaultCode(String spaFaultCode) {
-        this.spaFaultCode = spaFaultCode;
+    public void setCorrelationId(String correlationId) {
+        this.correlationId = correlationId;
     }
 
-    @Basic
-    @Column(name = "SPA_DEBUG_INFORMATION")
-    public byte[] getSpaDebugInformation() {
-        return spaDebugInformation;
+
+    public String getFaultType() {
+        return faultType;
     }
 
-    public void setSpaDebugInformation(byte[] spaDebugInformation) {
-        this.spaDebugInformation = spaDebugInformation;
+    public void setFaultType(String faultType) {
+        this.faultType = faultType;
     }
 
-    @Basic
-    @Column(name = "SPA_SEVERITY")
-    public String getSpaSeverity() {
-        return spaSeverity;
+
+    public String getFaultCode() {
+        return faultCode;
     }
 
-    public void setSpaSeverity(String spaSeverity) {
-        this.spaSeverity = spaSeverity;
+    public void setFaultCode(String faultCode) {
+        this.faultCode = faultCode;
+    }
+
+    public String getDebugInformation() {
+        return debugInformation;
+    }
+
+    public void setDebugInformation(String debugInformation) {
+        this.debugInformation = debugInformation;
+    }
+
+
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
     }
 
     @Override
@@ -163,33 +149,36 @@ public class LogEntity {
 
         LogEntity that = (LogEntity) o;
 
-        if (spaClientApplikation != null ? !spaClientApplikation.equals(that.spaClientApplikation) : that.spaClientApplikation != null)
+        if (clientApplikation != null ? !clientApplikation.equals(that.clientApplikation) : that.clientApplikation != null)
             return false;
-        if (spaClientVersion != null ? !spaClientVersion.equals(that.spaClientVersion) : that.spaClientVersion != null)
+        if (clientVersion != null ? !clientVersion.equals(that.clientVersion) : that.clientVersion != null)
             return false;
-        if (spaTimestamp != null ? !spaTimestamp.equals(that.spaTimestamp) : that.spaTimestamp != null) return false;
-        if (!Arrays.equals(spaMeldung, that.spaMeldung)) return false;
-        if (spaCorrelationId != null ? !spaCorrelationId.equals(that.spaCorrelationId) : that.spaCorrelationId != null)
+        if (timestamp != null ? !timestamp.equals(that.timestamp) : that.timestamp != null) return false;
+        if (meldung != null ? !meldung.equals(that.meldung) : that.meldung != null) return false;
+
+        if (correlationId != null ? !correlationId.equals(that.correlationId) : that.correlationId != null)
             return false;
-        if (spaFaultType != null ? !spaFaultType.equals(that.spaFaultType) : that.spaFaultType != null) return false;
-        if (spaFaultCode != null ? !spaFaultCode.equals(that.spaFaultCode) : that.spaFaultCode != null) return false;
-        if (!Arrays.equals(spaDebugInformation, that.spaDebugInformation)) return false;
-        if (spaSeverity != null ? !spaSeverity.equals(that.spaSeverity) : that.spaSeverity != null) return false;
+        if (faultType != null ? !faultType.equals(that.faultType) : that.faultType != null) return false;
+        if (faultCode != null ? !faultCode.equals(that.faultCode) : that.faultCode != null) return false;
+        if (debugInformation != null ? !debugInformation.equals(that.debugInformation) : that.debugInformation != null)
+            return false;
+
+        if (severity != null ? !severity.equals(that.severity) : that.severity != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = spaClientApplikation != null ? spaClientApplikation.hashCode() : 0;
-        result = 31 * result + (spaClientVersion != null ? spaClientVersion.hashCode() : 0);
-        result = 31 * result + (spaTimestamp != null ? spaTimestamp.hashCode() : 0);
-        result = 31 * result + (spaMeldung != null ? Arrays.hashCode(spaMeldung) : 0);
-        result = 31 * result + (spaCorrelationId != null ? spaCorrelationId.hashCode() : 0);
-        result = 31 * result + (spaFaultType != null ? spaFaultType.hashCode() : 0);
-        result = 31 * result + (spaFaultCode != null ? spaFaultCode.hashCode() : 0);
-        result = 31 * result + (spaDebugInformation != null ? Arrays.hashCode(spaDebugInformation) : 0);
-        result = 31 * result + (spaSeverity != null ? spaSeverity.hashCode() : 0);
+        int result = clientApplikation != null ? clientApplikation.hashCode() : 0;
+        result = 31 * result + (clientVersion != null ? clientVersion.hashCode() : 0);
+        result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
+        result = 31 * result + (meldung != null ? meldung.hashCode() : 0);
+        result = 31 * result + (correlationId != null ? correlationId.hashCode() : 0);
+        result = 31 * result + (faultType != null ? faultType.hashCode() : 0);
+        result = 31 * result + (faultCode != null ? faultCode.hashCode() : 0);
+        result = 31 * result + (debugInformation != null ? debugInformation.hashCode() : 0);
+        result = 31 * result + (severity != null ? severity.hashCode() : 0);
         return result;
     }
 }

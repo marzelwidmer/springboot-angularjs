@@ -1,59 +1,70 @@
 package ch.keepcalm.web.sba.domain;
 
-import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
 
-/**
- * Created by marcelwidmer on 02/06/15.
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+
 @Entity
-@Table(name="LoggingStore")
-public class LoggingStore {
+public class LoggingStore implements Serializable {
+
+
+    private static final long serialVersionUID = 5873356508976710835L;
+
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    private String id;
 
-    @Column(name = "description", nullable = true, length = 500)
-    private String description;
 
-    @Column(name = "title", nullable = false, length = 100)
-    private String title;
+    @NotEmpty
+    @NotNull
+    @Size(min=1, max=30)
+    @Column(name = "CLIENT_APPLIKATION")
+    private String clientApplikation;
 
-    @Version
-    private long version;
 
-    public LoggingStore() {
+    @NotEmpty
+    @NotNull
+    @Size(min=1, max=1024)
+    @Column(name = "CLIENT_VERSION")
+    private String clientVersion;
+
+
+
+
+
+
+    public String getClientVersion() {
+        return clientVersion;
     }
 
-    public Long getId() {
+    public void setClientVersion(String clientVersion) {
+        this.clientVersion = clientVersion;
+    }
+
+    public String getClientApplikation() {
+        return clientApplikation;
+    }
+
+    public void setClientApplikation(String clientApplikation) {
+        this.clientApplikation = clientApplikation;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
-    }
 }

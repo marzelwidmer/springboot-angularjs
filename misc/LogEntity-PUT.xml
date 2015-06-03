@@ -1,29 +1,30 @@
 <RestClientRequest>
-  <option name="biscuits">
-    <list />
-  </option>
-  <option name="httpMethod" value="POST" />
-  <option name="urlBase" value="http://localhost:8080" />
-  <option name="urlPath" value="/log" />
-  <option name="headers">
-    <list>
-      <KeyValuePair>
-        <option name="key" value="Content-Type" />
-        <option name="value" value="application/json" />
-      </KeyValuePair>
-      <KeyValuePair>
-        <option name="key" value="Cache-Control" />
-        <option name="value" value="no-cache" />
-      </KeyValuePair>
-    </list>
-  </option>
-  <option name="parameters">
-    <list />
-  </option>
-  <option name="parametersEnabled" value="true" />
-  <option name="haveTextToSend" value="true" />
-  <option name="haveFileToSend" value="false" />
-  <option name="isFileUpload" value="false" />
-  <option name="textToSend" value="{&quot;clientApplikation&quot;:&quot;MANoMANN&quot;,&quot;clientVersion&quot;:&quot;my cleint version&quot;,&quot;timestamp&quot;:null,&quot;meldung&quot;:&quot;TWVpbmUgTWVzc2FnZQ==&quot;,&quot;correlationId&quot;:&quot;my colorrelatinID&quot;,&quot;faultType&quot;:&quot;myFaultType&quot;,&quot;faultCode&quot;:&quot;myFaultCoder&quot;,&quot;debugInformation&quot;:&quot;RGFzIGlzdCBlaW5lIERlYnVnIE1lc3NhZ2U=&quot;,&quot;severity&quot;:&quot;mySeverity&quot;}" />
-  <option name="filesToSend" value="" />
+    <option name="biscuits">
+        <list/>
+    </option>
+    <option name="httpMethod" value="POST"/>
+    <option name="urlBase" value="http://localhost:8080"/>
+    <option name="urlPath" value="/log"/>
+    <option name="headers">
+        <list>
+            <KeyValuePair>
+                <option name="key" value="Content-Type"/>
+                <option name="value" value="application/json"/>
+            </KeyValuePair>
+            <KeyValuePair>
+                <option name="key" value="Cache-Control"/>
+                <option name="value" value="no-cache"/>
+            </KeyValuePair>
+        </list>
+    </option>
+    <option name="parameters">
+        <list/>
+    </option>
+    <option name="parametersEnabled" value="true"/>
+    <option name="haveTextToSend" value="true"/>
+    <option name="haveFileToSend" value="false"/>
+    <option name="isFileUpload" value="false"/>
+    <option name="textToSend"
+            value="{&quot;clientApplikation&quot;:&quot;MANoMANN&quot;,&quot;clientVersion&quot;:&quot;my cleint version&quot;,&quot;timestamp&quot;:null,&quot;meldung&quot;:&quot;TWVpbmUgTWVzc2FnZQ==&quot;,&quot;correlationId&quot;:&quot;my colorrelatinID&quot;,&quot;faultType&quot;:&quot;myFaultType&quot;,&quot;faultCode&quot;:&quot;myFaultCoder&quot;,&quot;debugInformation&quot;:&quot;RGFzIGlzdCBlaW5lIERlYnVnIE1lc3NhZ2U=&quot;,&quot;severity&quot;:&quot;mySeverity&quot;}"/>
+    <option name="filesToSend" value=""/>
 </RestClientRequest>

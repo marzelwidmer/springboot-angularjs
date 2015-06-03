@@ -3,14 +3,50 @@ package ch.keepcalm.web.sba.domain;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
+/**
+ * faultTyp :
+ * <ul>
+ * <li>DATEN</li>
+ * <li>SYSTEM_SOFT</li>
+ * <li>SYSTEM_SOFT_KOMPATIBILITAET</li>
+ * <li>SYSTEM_SOFT_SCHEMA</li>
+ * <li>SYSTEM_UMGEBUNG</li>
+ * </ul>
+ * severity :
+ * <ul>
+ * <li>DEBUG</li>
+ * <li>ERROR</li>
+ * <li>INFO</li>
+ * <li>WARNING</li>
+ * </ul>
+ * Beispiel Request
+ * <pre>
+ *     <code>
+ *         {
+ *              "clientApplikation": "SPA",
+ *              "clientVersion": "1.0",
+ *              "correlationId": "11212",
+ *              "debugInformation": "Hello World",
+ *              "faultMessage": "Helsana Hello World",
+ *              "faultCode": "289-36",
+ *              "faultType": "DATEN",
+ *              "severity": "DEBUG",
+ *          }
+ *     </code>
+ * </pre>
+ * Beispiel Response
+ * <pre>
+ *     <code>
+ *         {}
+ *     </code>
+ * </pre>
+ */
 @Entity
 public class LoggingStore implements Serializable {
 
@@ -23,28 +59,81 @@ public class LoggingStore implements Serializable {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "TIMESTAMP", nullable = false)
+    private Date timestamp;
 
     @NotEmpty
     @NotNull
-    @Size(min=1, max=30)
+    @Size(min = 1, max = 30)
     @Column(name = "CLIENT_APPLIKATION")
     private String clientApplikation;
 
 
     @NotEmpty
     @NotNull
-    @Size(min=1, max=1024)
+    @Size(min = 1, max = 1024)
     @Column(name = "CLIENT_VERSION")
     private String clientVersion;
 
+    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 7000)
+    @Column(name = "DEBUG_INFORMATION")
+    private String debugInformation;
+
+    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 256)
+    @Column(name = "FAULT_CODE")
+    private String faultCode;
+
+    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 7000)
+    @Column(name = "FAULT_MESSAGE")
+    private String faultMessage;
+
+    /**
+     * DATEN / SYSTEM_SOFT / SYSTEM_SOFT_KOMPATIBILITAET / SYSTEM_SOFT_SCHEMA / SYSTEM_UMGEBUNG
+     */
+    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "FAULT_TYPE")
+    private String faultType;
+
+    /**
+     * DEBUG / ERROR / INFO / WARNING
+     */
+    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "SEVERITY")
+    private String severity;
 
 
+    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "CORRELATION_ID")
+    private String correlationId;
 
 
-
-    public String getClientVersion() {
-        return clientVersion;
+    @PrePersist
+    protected void onCreate() {
+        timestamp = new Date();
     }
+
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
 
     public void setClientVersion(String clientVersion) {
         this.clientVersion = clientVersion;
@@ -66,5 +155,55 @@ public class LoggingStore implements Serializable {
         this.id = id;
     }
 
+    public String getClientVersion() {
+        return clientVersion;
+    }
 
+    public String getDebugInformation() {
+        return debugInformation;
+    }
+
+    public void setDebugInformation(String debugInformation) {
+        this.debugInformation = debugInformation;
+    }
+
+    public String getFaultCode() {
+        return faultCode;
+    }
+
+    public void setFaultCode(String faultCode) {
+        this.faultCode = faultCode;
+    }
+
+    public String getFaultMessage() {
+        return faultMessage;
+    }
+
+    public void setFaultMessage(String faultMessage) {
+        this.faultMessage = faultMessage;
+    }
+
+    public String getFaultType() {
+        return faultType;
+    }
+
+    public void setFaultType(String faultType) {
+        this.faultType = faultType;
+    }
+
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
+    }
+
+    public String getCorrelationId() {
+        return correlationId;
+    }
+
+    public void setCorrelationId(String correlationId) {
+        this.correlationId = correlationId;
+    }
 }

@@ -15,6 +15,21 @@ import javax.validation.Valid;
 
 /**
  * Created by marcelwidmer on 25/05/15.
+ * <p/>
+ * <pre>
+ *     <code>
+ *         {
+ * "clientApplikation":"SPA",
+ * "clientVersion":"1.0",
+ * "correlationId": "11212",
+ * "debugInformation":"Hello World",
+ * "faultMessage":"Helsana Hello World",
+ * "faultCode":"289-36",
+ * "faultType":"DATEN",
+ * "severity":"DEBUG"
+ * }
+ *     </code>
+ * </pre>
  */
 @RestController
 @RequestMapping("/log")
@@ -26,12 +41,12 @@ public class LoggingRestController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity log(@Valid @RequestBody LoggingStore loggingStore) {
         repository.saveAndFlush(loggingStore);
-        return new ResponseEntity(loggingStore.getId(), HttpStatus.CREATED);
+        return new ResponseEntity(loggingStore, HttpStatus.CREATED);
     }
 
 
     @JsonSerialize
-    private class EmptyJsonResponse  {
+    private class EmptyJsonResponse {
     }
 
 

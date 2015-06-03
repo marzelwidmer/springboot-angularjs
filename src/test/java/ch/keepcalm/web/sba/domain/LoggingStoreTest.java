@@ -21,19 +21,29 @@ import static junit.framework.TestCase.fail;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @ActiveProfiles("test")
-public class LoggingStoreTest  {
+public class LoggingStoreTest {
 
 
     @Autowired
     private LoggingStoreRepository repository;
 
+    private LoggingStore getDefualtLoggingStoreObject() {
+        LoggingStore loggingStore = new LoggingStore();
+        loggingStore.setClientApplikation("SPA");
+        loggingStore.setClientVersion("1.0");
+        loggingStore.setCorrelationId("11212");
+        loggingStore.setDebugInformation("Hello World");
+        loggingStore.setFaultMessage("Helsana Hello World");
+        loggingStore.setFaultCode("289-36");
+        loggingStore.setFaultType("DATEN");
+        loggingStore.setSeverity("DEBUG");
+        return loggingStore;
+    }
 
     @Test
     public void testWriteSomeLog() {
-        LoggingStore loggingStore = new LoggingStore();
-        loggingStore.setClientApplikation("JunitApplicationID");
-        loggingStore.setClientVersion("JUnitClientVersion");
-        repository.save(loggingStore);
+
+        repository.save(getDefualtLoggingStoreObject());
         List<LoggingStore> all = repository.findAll();
         assertNotNull(all);
 
@@ -43,7 +53,7 @@ public class LoggingStoreTest  {
 
     @Test(expected = org.springframework.transaction.TransactionSystemException.class)
     public void testEmptyApplicationAndClientVersion() {
-        LoggingStore loggingStore = new LoggingStore();
+        LoggingStore loggingStore = getDefualtLoggingStoreObject();
         loggingStore.setClientApplikation("");
         loggingStore.setClientVersion("");
         repository.save(loggingStore);
@@ -51,7 +61,7 @@ public class LoggingStoreTest  {
 
     @Test(expected = org.springframework.transaction.TransactionSystemException.class)
     public void testNullApplicationAndClientVersion() {
-        LoggingStore loggingStore = new LoggingStore();
+        LoggingStore loggingStore = getDefualtLoggingStoreObject();
         loggingStore.setClientApplikation(null);
         loggingStore.setClientVersion(null);
         repository.save(loggingStore);
@@ -59,7 +69,7 @@ public class LoggingStoreTest  {
 
     @Test
     public void testApplicationAndClientVersion() {
-        LoggingStore loggingStore = new LoggingStore();
+        LoggingStore loggingStore = getDefualtLoggingStoreObject();
         loggingStore.setClientApplikation("1");
         loggingStore.setClientVersion("1");
         repository.save(loggingStore);
@@ -67,7 +77,7 @@ public class LoggingStoreTest  {
 
     @Test(expected = org.springframework.transaction.TransactionSystemException.class)
     public void testApplicationMaxSizeNecativeTest() {
-        LoggingStore loggingStore = new LoggingStore();
+        LoggingStore loggingStore = getDefualtLoggingStoreObject();
         loggingStore.setClientApplikation("1234567890123456789012345678901");
         loggingStore.setClientVersion("1");
         repository.save(loggingStore);
@@ -75,7 +85,7 @@ public class LoggingStoreTest  {
 
     @Test
     public void testApplicationMaxSizePositiveTest() {
-        LoggingStore loggingStore = new LoggingStore();
+        LoggingStore loggingStore = getDefualtLoggingStoreObject();
         loggingStore.setClientApplikation("123456789012345678901234567890");
         loggingStore.setClientVersion("1");
         try {
@@ -87,20 +97,18 @@ public class LoggingStoreTest  {
 
     @Test
     public void testNotNullClientVersion() {
-        LoggingStore loggingStore = new LoggingStore();
+        LoggingStore loggingStore = getDefualtLoggingStoreObject();
         loggingStore.setClientVersion(null);
         loggingStore.setClientApplikation("myJUnitAppicationID");
 
         try {
             repository.save(loggingStore);
 //            fail();
-       } catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
             // OK
         }
     }
-
-
 
 
 }

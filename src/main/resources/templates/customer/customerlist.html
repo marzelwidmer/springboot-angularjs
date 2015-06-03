@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-	layout:decorator="layout">
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
 <head>
-<title>Customer : View all</title>
+    <title>Customer : View all</title>
 </head>
 <body>
-	<h1 layout:fragment="header">Customer : View all</h1>
-	<div layout:fragment="content" class="container">
-		<p><a href="/loadData">Load test data</a> | <a href="/clearData">Clear test data</a></p>
+<h1 layout:fragment="header">Customer : View all</h1>
 
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<td>ID</td>
-					<td>FirstName</td>
-					<td>LastName</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:if="${customers.empty}">
-					<td colspan="3">No Customers</td>
-				</tr>
-				<tr th:each="customer : ${customers}">
-					<td th:text="${customer.id}">ID</td>
-					<td th:text="${customer.firstname}">FirstName</td>
-					<td th:text="${customer.lastname}">Lastname</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+<div layout:fragment="content" class="container">
+    <p><a href="/loadData">Load test data</a> | <a href="/clearData">Clear test data</a></p>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>FirstName</td>
+            <td>LastName</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${customers.empty}">
+            <td colspan="3">No Customers</td>
+        </tr>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}">ID</td>
+            <td th:text="${customer.firstname}">FirstName</td>
+            <td th:text="${customer.lastname}">Lastname</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

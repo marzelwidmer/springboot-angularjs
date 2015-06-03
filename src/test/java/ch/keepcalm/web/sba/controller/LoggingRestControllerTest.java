@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
@@ -25,23 +23,30 @@ public class LoggingRestControllerTest {
 
     private static final String REST_SERVICE_URL = "http://127.0.0.1:7779/log/";
 
+    private LoggingStore getDefualtLoggingStoreObject() {
+        LoggingStore loggingStore = new LoggingStore();
+        loggingStore.setClientApplikation("SPA");
+        loggingStore.setClientVersion("1.0");
+        loggingStore.setCorrelationId("11212");
+        loggingStore.setDebugInformation("Hello World");
+        loggingStore.setFaultMessage("Helsana Hello World");
+        loggingStore.setFaultCode("289-36");
+        loggingStore.setFaultType("DATEN");
+        loggingStore.setSeverity("DEBUG");
+        return loggingStore;
+    }
+
     @Test
     public void testLogRestController() {
-        LoggingStore loggingStore = new LoggingStore();
+        LoggingStore loggingStore = getDefualtLoggingStoreObject();
         loggingStore.setClientApplikation("JunitApplicationID");
         loggingStore.setClientVersion("JUnitClientVersion");
-
 
         RestTemplate restTemplate = new RestTemplate();
         String log = restTemplate.postForObject(REST_SERVICE_URL, loggingStore, String.class);
         assertNotNull(log);
-
-
-        ResponseEntity<LoggingStore> logEntityResponseEntity = new ResponseEntity<LoggingStore>(loggingStore, HttpStatus.CREATED);
-
-        System.out.println(logEntityResponseEntity);
-
-
     }
+
+
 
 }

@@ -19,43 +19,43 @@
     </div>
     <h1 layout:fragment="header">Customer : View all {{getTotalCustomers()}} </h1>
     <a href="/loadDataAngular">Load test data</a>
-        <a href="/clearDataAngular">Clear test data</a> | <a href="/api/customer">Customer API</a>
+    <a href="/clearDataAngular">Clear test data</a> | <a href="/api/customer">Customer API</a>
     </p>
     <div layout:fragment="content">
         <div class="container">
 
             <div class="panel panel-default" ng-controller="CustomerSubmitController">
 
-            <form id="reg" ng-submit="register()">
-                <h2>Customer Registration</h2>
-                <fieldset>
-                    <legend>Register a customer:</legend>
-                    <!-- Each input is bound to a property on the prototype newMember object -->
-                    <div>
-                        <label for="firstname">FirstName:</label>
-                        <input type="text" name="firstname" id="firstname"  ng-model="firstname" placeholder="Your FirstName" required autofocus/>
-                        <span class="error" ng-show="errors.firstname">{{errors.firstname}}</span>
-                    </div><!-- There are two buttons, the default submit action (which is bound for the whole form), and a reset button, that clears the form. -->
-                    <div>
-                        <label for="lastname">LastName:</label>
-                        <input type="text" name="lastname" id="lastname"  ng-model="lastname" placeholder="Your LastName" required autofocus/>
-                        <span class="error" ng-show="errors.lastname">{{errors.lastname}}</span>
-                    </div>
-                    <div>
-                        <input type="submit" id="register" value="Register" />
-                    </div>
-                </fieldset>
-            </form>
+                <form id="reg" ng-submit="register()">
+                    <h2>Customer Registration</h2>
+                    <fieldset>
+                        <legend>Register a customer:</legend>
+                        <!-- Each input is bound to a property on the prototype newMember object -->
+                        <div>
+                            <label for="firstname">FirstName:</label>
+                            <input type="text" name="firstname" id="firstname" ng-model="firstname"
+                                   placeholder="Your FirstName" required autofocus/>
+                            <span class="error" ng-show="errors.firstname">{{errors.firstname}}</span>
+                        </div>
+                        <!-- There are two buttons, the default submit action (which is bound for the whole form), and a reset button, that clears the form. -->
+                        <div>
+                            <label for="lastname">LastName:</label>
+                            <input type="text" name="lastname" id="lastname" ng-model="lastname"
+                                   placeholder="Your LastName" required autofocus/>
+                            <span class="error" ng-show="errors.lastname">{{errors.lastname}}</span>
+                        </div>
+                        <div>
+                            <input type="submit" id="register" value="Register"/>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-
-
-
-
 
 
             <!-- HATEOS WAY with service factory  -->
             <div class="panel panel-default" ng-controller="CustomerClientController">
                 <h1>Angular HATEOAS way : View all {{customerList.length}}</h1>
+
                 <p><a href="/hal/customer/">Customer API HATEOAS </a> |</p>
                 <table class="table table-striped table-condensed">
 
@@ -74,22 +74,12 @@
                         <td>{{customer.firstname}}</td>
                         <td>{{customer.lastname}}</td>
                         <td><a href="{{customer.selfLink}}">{{customer.selfLink}}</a></td>
-                        <td><a ng-click="deleteCustomer(customer.selfLink)" class="btn btn-small btn-danger">delete</a></td>
+                        <td><a ng-click="deleteCustomer(customer.selfLink)" class="btn btn-small btn-danger">delete</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
             <div class="panel panel-default">
@@ -116,6 +106,7 @@
             <!-- HATEOAS WAY-->
             <div class="panel panel-default" ng-controller="CustomerController">
                 <h1>Angular HATEOAS way : View all {{customerList.length}}</h1>
+
                 <p><a href="/hal/customer/">Customer API HATEOAS </a> |</p>
                 <table class="table table-striped table-condensed">
 
@@ -134,7 +125,8 @@
                         <td>{{customer.firstname}}</td>
                         <td>{{customer.lastname}}</td>
                         <td><a href="{{customer.selfLink}}">{{customer.selfLink}}</a></td>
-                        <td><a ng-click="removeCustomer(customer.selfLink, $index)" class="btn btn-small btn-danger">delete</a></td>
+                        <td><a ng-click="removeCustomer(customer.selfLink, $index)" class="btn btn-small btn-danger">delete</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

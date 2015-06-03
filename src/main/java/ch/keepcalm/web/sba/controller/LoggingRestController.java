@@ -41,7 +41,7 @@ public class LoggingRestController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity log(@Valid @RequestBody LoggingStore loggingStore) {
         repository.saveAndFlush(loggingStore);
-        return new ResponseEntity(loggingStore, HttpStatus.CREATED);
+        return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.CREATED);
     }
 
 

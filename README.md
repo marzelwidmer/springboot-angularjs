@@ -24,3 +24,21 @@ java -jar target/springboot-angularjs-0.0.1-SNAPSHOT.jar --spring.profiles.activ
 
 #### Application SSH login
 ssh -p 2000 user@localhost
+
+
+##### Log REST API
+request :
+```
+{
+ "clientApplikation":"SPA",
+ "clientVersion":"1.0",
+ "correlationId": "11212",
+ "debugInformation":"Hello World",
+ "faultMessage":"Hello World Message",
+ "faultCode":"289-36",
+ "faultType":"DATEN",
+ "severity":"DEBUG"
+  }
+```
+response :
+```{}```

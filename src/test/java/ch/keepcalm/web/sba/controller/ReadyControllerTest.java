@@ -15,15 +15,15 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest({"server.port=7777", "management.port=0"})
+@WebIntegrationTest({"server.port=7777", "management.port=0", "shell.telnet.port=0", "shell.ssh.port=0"})
 public class ReadyControllerTest {
 
 
     @Test
     public void testReady() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
-        assertEquals("SBAUP", restTemplate.getForObject(
-                "http://127.0.0.1:7777/ready/ready.jsp", String.class));
+        assertEquals("UP", restTemplate.getForObject(
+                "http://127.0.0.1:7777/ready/", String.class));
     }
 
 

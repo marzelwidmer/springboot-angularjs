@@ -12,6 +12,6 @@ public class ReadyController {
 
     @RequestMapping("/ready/")
     public String ready() {
-        return "SBAUP";
+        return "UP";
     }
 }

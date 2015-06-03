@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 @SpringApplicationConfiguration(classes = Application.class)
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
-@ActiveProfiles(profiles = "development")
+@ActiveProfiles(profiles = "junit")
 public class LoggingStoreRepositoryTest {
 
     @Autowired

@@ -18,7 +18,7 @@ import java.io.UnsupportedEncodingException;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@ActiveProfiles(profiles = "development")
+@ActiveProfiles(profiles = "junit")
 public class LogEntityTest extends TestCase {
 
 

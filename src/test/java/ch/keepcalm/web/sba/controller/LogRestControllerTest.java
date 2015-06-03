@@ -20,10 +20,10 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@WebIntegrationTest({"server.port=7779", "management.port=0"})
+@WebIntegrationTest({"server.port=7779", "management.port=0", "shell.telnet.port=0", "shell.ssh.port=0"})
 public class LogRestControllerTest {
 
-    private static final String REST_SERVICE_URL = "http://127.0.0.1:7779/api/log/";
+    private static final String REST_SERVICE_URL = "http://127.0.0.1:7779/log/";
 
     @Test
     public void testLogRestController() {

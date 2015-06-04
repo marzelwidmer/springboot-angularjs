@@ -64,7 +64,7 @@ public class CustomerHATEOASController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable String id) {
         Customer customer = new Customer();
         customer.setId(id);
         customerService.delete(customer);
@@ -73,16 +73,16 @@ public class CustomerHATEOASController {
 
     public static class ShortContact extends ResourceSupport {
 
-        private long userId;
+        private String userId;
         private String firstname;
         private String lastname;
 
 
-        public long getUserId() {
+        public String getUserId() {
             return userId;
         }
 
-        public void setUserId(long userId) {
+        public void setUserId(String userId) {
             this.userId = userId;
         }
 

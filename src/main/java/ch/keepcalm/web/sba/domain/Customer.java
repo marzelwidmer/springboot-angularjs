@@ -1,6 +1,7 @@
 package ch.keepcalm.web.sba.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,9 +17,11 @@ public class Customer implements Serializable {
 
     private String lastname;
     private String firstname;
+
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    private String id;
 
     public Customer() {
     }
@@ -60,11 +63,11 @@ public class Customer implements Serializable {
         return true;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

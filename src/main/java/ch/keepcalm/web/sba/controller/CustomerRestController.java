@@ -47,7 +47,7 @@ public class CustomerRestController {
 
     @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable String id) {
         Customer customer = new Customer();
         customer.setId(id);
         customerService.delete(customer);

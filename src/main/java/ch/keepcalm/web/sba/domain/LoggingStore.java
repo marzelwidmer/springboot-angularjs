@@ -87,7 +87,7 @@ public class LoggingStore implements Serializable {
     @NotNull
     @Size.List({
             @Size(min = 1),
-            @Size(max = 7000)
+            @Size(max = 4000)
     })
     @Column(name = "DEBUG_INFORMATION")
     private String debugInformation;
@@ -103,7 +103,7 @@ public class LoggingStore implements Serializable {
 
     @NotEmpty
     @NotNull
-    @Size(min = 1, max = 7000)
+    @Size(min = 1, max = 4000)
     @Column(name = "FAULT_MESSAGE")
     private String faultMessage;
 

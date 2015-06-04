@@ -29,7 +29,7 @@ angular.module('myApp.controllers', [])
 
     .controller('CustomerController', function ($log, $scope, $http, $resource) {
         'use strict';
-        var url = "http://localhost:8080/hal/customer/:id ";
+        var url = "/hal/customer/:id ";
 
         var personResource = $resource(url);
 
@@ -65,7 +65,7 @@ angular.module('myApp.controllers', [])
     })
     .controller('CustomerSubmitController', function ($log, $scope, $http, $resource) {
         'use strict';
-        var url = "http://localhost:8080/hal/customer/ ";
+        var url = "/hal/customer/ ";
 
         $scope.register = function() {
             console.log("Register new customer " + $scope.firstname + " " + $scope.lastname);
@@ -126,7 +126,7 @@ app.factory('User', function ($cacheFactory, $resource) {
 /*
     var User = $resource('/users/:userid', {}, {
 */
-    var User = $resource('http://localhost:8080/hal/customer/ ', {}, {
+    var User = $resource('/hal/customer/ ', {}, {
         get: { cache: true, method: 'get' }
     });
     return User;

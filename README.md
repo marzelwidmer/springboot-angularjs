@@ -1,9 +1,5 @@
 
 
-![Travis Build](https://travis-ci.org/marzelwidmer/springboot-angularjs.svg?branch=master)
-
-[http://marzelwidmer.github.io/springboot-angularjs/](http://marzelwidmer.github.io/springboot-angularjs/)
-
 
 #### AngularJS 
  springboot-angularjs/src/main/resources/static: bower install

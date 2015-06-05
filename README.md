@@ -1,7 +1,11 @@
 
+[![Build status][travis-image]][travis-url]
+[![License][license-image]][license-url]
 
-
-[![Build Status]https://travis-ci.org/marzelwidmer/springboot-angularjs.svg?branch=master](https://travis-ci.org/marzelwidmer/springboot-angularjs.svg?branch=master)
+[travis-image]: https://img.shields.io/travis/marzelwidmer/springboot-angularjs.svg?style=flat-square
+[travis-url]: https://travis-ci.org/marzelwidmer/springboot-angularjs
+[license-image]: http://img.shields.io/:license-Apache2.0-blue.svg?style=flat-square
+[license-url]: LICENSE
 
 
 #### AngularJS 

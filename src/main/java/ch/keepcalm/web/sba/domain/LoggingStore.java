@@ -54,8 +54,6 @@ public class LoggingStore implements Serializable {
 
     private static final long serialVersionUID = 5873356508976710835L;
 
-    private static final String DEFAULT_MESSAGE = "Es ist ein genereller Fehler aufgetreten";
-
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
@@ -66,89 +64,81 @@ public class LoggingStore implements Serializable {
     private Date timestamp;
 
 
-    @NotEmpty(message = DEFAULT_MESSAGE)
-    @NotNull(message = DEFAULT_MESSAGE)
+    @NotEmpty
+    @NotNull
     @Size.List({
             @Size(min = 1),
-            @Size(max = 30,
-            message = DEFAULT_MESSAGE)
+            @Size(max = 30)
     })
     @Column(name = "CLIENT_APPLIKATION")
     private String clientApplikation;
 
 
-    @NotEmpty(message = DEFAULT_MESSAGE)
-    @NotNull(message = DEFAULT_MESSAGE)
+    @NotEmpty
+    @NotNull
     @Size.List({
             @Size(min = 1),
-            @Size(max = 1024,
-                    message = DEFAULT_MESSAGE)
+            @Size(max = 1024)
     })
     @Column(name = "CLIENT_VERSION")
     private String clientVersion;
 
-    @NotEmpty(message = DEFAULT_MESSAGE)
-    @NotNull(message = DEFAULT_MESSAGE)
+    @NotEmpty
+    @NotNull
     @Size.List({
             @Size(min = 1),
-            @Size(max = 4000,
-                    message = DEFAULT_MESSAGE)
+            @Size(max = 4000)
     })
     @Column(name = "DEBUG_INFORMATION")
     private String debugInformation;
 
-    @NotEmpty(message = DEFAULT_MESSAGE)
-    @NotNull(message = DEFAULT_MESSAGE)
+    @NotEmpty
+    @NotNull
     @Size.List({
             @Size(min = 1),
-            @Size(max = 256,
-                    message = DEFAULT_MESSAGE)
+            @Size(max = 256)
     })
     @Column(name = "FAULT_CODE")
     private String faultCode;
 
-    @NotEmpty(message = DEFAULT_MESSAGE)
-    @NotNull(message = DEFAULT_MESSAGE)
-    @Size(min = 1, max = 4000,
-            message = DEFAULT_MESSAGE)
+    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 4000)
     @Column(name = "FAULT_MESSAGE")
     private String faultMessage;
 
     /**
      * DATEN / SYSTEM_SOFT / SYSTEM_SOFT_KOMPATIBILITAET / SYSTEM_SOFT_SCHEMA / SYSTEM_UMGEBUNG
      */
-    @NotEmpty(message = DEFAULT_MESSAGE)
-    @NotNull(message = DEFAULT_MESSAGE)
+    @NotEmpty
+    @NotNull
     @Size.List({
             @Size(min = 1),
-            @Size(max = 64,
-                    message = DEFAULT_MESSAGE)
+            @Size(max = 64)
     })
-    @Pattern(regexp = "\\bDATEN\\b|\\bSYSTEM_SOFT\\b|\\bSYSTEM_SOFT_KOMPATIBILITAET\\b|\\bSYSTEM_SOFT_SCHEMA\\b|\\bSYSTEM_UMGEBUNG\\b", message = DEFAULT_MESSAGE)
+    @Pattern(regexp = "\\bDATEN\\b|\\bSYSTEM_SOFT\\b|\\bSYSTEM_SOFT_KOMPATIBILITAET\\b|\\bSYSTEM_SOFT_SCHEMA\\b|\\bSYSTEM_UMGEBUNG\\b")
     @Column(name = "FAULT_TYPE")
     private String faultType;
 
     /**
      * DEBUG / ERROR / INFO / WARNING
      */
-    @NotEmpty(message = DEFAULT_MESSAGE)
-    @NotNull(message = DEFAULT_MESSAGE)
+    @NotEmpty
+    @NotNull
     @Size.List({
             @Size(min = 1),
-            @Size(max = 64,
-                    message = DEFAULT_MESSAGE)
+            @Size(max = 64)
     })
     @Pattern(regexp = "\\bDEBUG\\b|\\bINFO\\b|\\bERROR\\b|\\bWARNING\\b")
     @Column(name = "SEVERITY")
     private String severity;
 
 
-    @NotEmpty(message = DEFAULT_MESSAGE)
-    @NotNull(message = DEFAULT_MESSAGE)
+    @NotEmpty
+    @NotNull
     @Size.List({
             @Size(min = 1),
-            @Size(max = 64,
-                    message = DEFAULT_MESSAGE)
+            @Size(max = 64)
     })
     @Column(name = "CORRELATION_ID")
     private String correlationId;
